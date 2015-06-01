@@ -1,6 +1,6 @@
 {
-  "name": "generator-bangular",
-  "version": "0.11.1",
+  "name": "generator-typebang",
+  "version": "0.0.1",
   "description": "Generate and serve your project in a blink of an eye",
   "license": "BSD",
   "homepage": "https://github.com/42Zavattas/generator-bangular",
