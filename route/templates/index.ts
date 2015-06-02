@@ -2,11 +2,18 @@
 'use strict';
 
 angular.module('<%= appname %>')
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('<%= route %>', {
-        templateUrl: 'views/<%= dashName %>/<%= dashName %>.html',
-        controller: '<%= controllerName %>',
-        controllerAs: 'vm'
+  .config(function($stateProvider) {
+
+    $stateProvider
+      .state('<%= state %>', {
+        url: '<%= route %>',
+        views: {
+          'app': {
+            templateUrl: 'views/<%= dashName %>/<%= dashName %>.html',
+            controller: '<%= controllerName %>',
+            controllerAs: 'vm'
+          }
+        }
       });
+
   });

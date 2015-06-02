@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "angular": "~1.3.0",
-    "angular-route": "~1.3.0"<% if (filters.ngCookies) { %>,
+    "angular-ui-router": "~0.2.13"<% if (filters.ngCookies) { %>,
     "angular-cookies": "~1.3.0"<% } %><% if (filters.ngResource) { %>,
     "angular-resource": "~1.3.0"<% } %><% if (filters.ngSanitize) { %>,
     "angular-sanitize": "~1.3.0"<% } %><% if (filters.ngAnimate) { %>,

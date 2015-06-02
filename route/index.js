@@ -19,6 +19,11 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     var done = self.async();
     self.prompt([{
       type: 'input',
+      name: 'state',
+      message: 'Define state name',
+      default: self.dashName
+    }, {
+      type: 'input',
       name: 'route',
       message: 'Choose an url route',
       default: '/' + self.dashName
@@ -28,6 +33,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       message: 'Do you want to create and import the ' + chalk.blue(this.dashName + '.scss') + ' style in your app.scss?',
       default: false
     }], function (props) {
+      self.state = props.state;
       self.route = props.route;
       self.import = props.import;
       done();

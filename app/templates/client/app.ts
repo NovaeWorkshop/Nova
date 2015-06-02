@@ -2,19 +2,16 @@
 'use strict';
 
 angular.module('<%= appname %>', [
-  'ngRoute'<% if (filters.ngCookies) { %>,
+  'ui.router'<% if (filters.ngCookies) { %>,
   'ngCookies'<% } %><% if (filters.ngResource) { %>,
   'ngResource'<% } %><% if (filters.ngSanitize) { %>,
   'ngSanitize'<% } %><% if (filters.ngAnimate) { %>,
   'ngAnimate'<% } %><% if (filters.sockets) { %>,
   'btford.socket-io'<% } %>
 ])
-  .config(function ($routeProvider, $locationProvider<% if (filters.auth) { %>, $httpProvider<% } %>) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider<% if (filters.auth) { %>, $httpProvider<% } %>) {
 
-    $routeProvider
-      .otherwise({
-        redirectTo: '/'
-      });
+    $urlRouterProvider.otherwise('/login');
 
     $locationProvider.html5Mode(true);<% if (filters.auth) { %>
     $httpProvider.interceptors.push('authInterceptor');<% } %>
