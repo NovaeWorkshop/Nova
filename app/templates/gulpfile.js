@@ -4,9 +4,10 @@ var gulp = require('gulp');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-gulp.task('default',    ['serve']);<% if (filters.reload === 'browsersync') { %>
+gulp.task('default',    ['typescript', 'serve']);<% if (filters.reload === 'browsersync') { %>
 gulp.task('nodemon',    ['watch'],    require('./tasks/serve').nodemon);<% } %>
 gulp.task('typescript-client',        require('./tasks/typescript-client'));
+gulp.task('typescript', ['typescript-client']);
 gulp.task('serve',      [<% if (filters.reload === 'livereload') { %>'watch'],  <% } else { %>'nodemon'],<% } %>  require('./tasks/serve')<% if (filters.reload === 'browsersync') { %>.bsync<% } else { %>.nodemon<% } %>);
 gulp.task('watch',      ['inject'],   require('./tasks/watch'));
 gulp.task('inject',     ['sass'],     require('./tasks/inject'));

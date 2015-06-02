@@ -46,30 +46,19 @@ module.exports = function () {<% if (filters.reload === 'livereload') { %>
       .pipe(bsync.reload({ stream: true }))<% } %>;
   });
 
-  var coreFiles = [
-    'client/views',
-    'client/views/**/*.html',
-    'client/views/**/*.js',
-    '!client/views/**/*.scss',
-    '!client/views/**/*.spec.js',
-    '!client/views/**/*.e2e.js',
-    'client/directives',
-    'client/directives/**/*.html',
-    'client/directives/**/*.js',
-    '!client/directives/**/*.spec.js',
-    'client/services',
-    'client/services/**/*.js',
-    '!client/services/**/*.spec.js',
-    'client/animations',
-    'client/animations/*.js',
-    'client/filters',
-    'client/filters/**/*.js',
-    '!client/filters/**/*.spec.js'
+  var tsClientSources = [
+    'client/app.ts',
+    'client/app.d.ts',
+    'client/animations/*.ts',
+    'client/directives/**/*.ts', '!client/directives/**/*.spec.ts',
+    'client/filters/**/*.ts', '!client/filters/**/*.spec.ts',
+    'client/services/**/*.ts', '!client/services/**/*.spec.ts',
+    'client/views/**/*.ts', '!client/views/**/*.spec.ts', '!client/views/**/*.e2e.ts'
   ];
 
   var lastInjection = Date.now();
 
-  watch(coreFiles, { events: ['add', 'unlink'] }, function () {
+  watch(['client/app.js'], function () {
     if (Date.now() - lastInjection < 100) { return; }
     lastInjection = Date.now();
     gulp.src('client/index.html')
@@ -77,7 +66,9 @@ module.exports = function () {<% if (filters.reload === 'livereload') { %>
       .pipe(gulp.dest('client'));
   });
 
-  watch(coreFiles, <% if (filters.reload === 'livereload') { %>livereload.changed<% } else { %>bsync.reload<% } %>);
+  watch(tsClientSources, function () {
+    gulp.run('typescript-client');
+  });
   watch(['client/index.html', 'client/app.js'], <% if (filters.reload === 'livereload') { %>livereload.changed<% } else { %>bsync.reload<% } %>);
 
 };
