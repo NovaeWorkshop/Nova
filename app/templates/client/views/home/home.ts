@@ -1,11 +1,12 @@
+/// <reference path="../../app.d.ts" />
 'use strict';
 
 angular.module('<%= appname %>')
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/signup', {
-        templateUrl: 'views/signup/signup.html',
-        controller: 'SignupCtrl',
+      .when('/', {
+        templateUrl: 'views/home/home.html',
+        controller: 'HomeCtrl',
         controllerAs: 'vm'
       });
   });
