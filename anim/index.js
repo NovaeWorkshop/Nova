@@ -77,7 +77,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
   writing: function () {
 
     var basePath = 'client/animations/';
-    this.template('animation.js', basePath + '/' + this.dashName + '.js');
+    this.template('animation.ts', basePath + '/' + this.dashName + '.ts');
 
   }
 
