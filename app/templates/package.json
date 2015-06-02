@@ -72,6 +72,7 @@
     "socket.io": "^1.3.5"<% } %>
   },
   "scripts": {
+    "postinstall": "tsd reinstall -so",
     "start": "node server/server.js"<% if (filters.mocha || filters.karma) { %>,
     "test": "gulp test"<% } if (filters.apidoc) { %>,
     "apidoc": "./node_modules/.bin/apidoc -i ./server -o ./docs/api"<% } %>
