@@ -56,6 +56,10 @@ module.exports = function () {<% if (filters.reload === 'livereload') { %>
     'client/views/**/*.ts', '!client/views/**/*.spec.ts', '!client/views/**/*.e2e.ts'
   ];
 
+  var tsServerSources = [
+    'server/**/*.ts'
+  ];
+
   var lastInjection = Date.now();
 
   watch(['client/app.js'], function () {
@@ -69,6 +73,10 @@ module.exports = function () {<% if (filters.reload === 'livereload') { %>
   watch(tsClientSources, function () {
     gulp.run('typescript-client');
   });
+  watch(tsServerSources, function () {
+    gulp.run('typescript-server');
+  });
+
   watch(['client/index.html', 'client/app.js'], <% if (filters.reload === 'livereload') { %>livereload.changed<% } else { %>bsync.reload<% } %>);
 
 };
