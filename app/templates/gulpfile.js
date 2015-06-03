@@ -1,10 +1,11 @@
 'use strict';
 
-var gulp = require('gulp');
+var gulp = require('gulp'),
+    sq   = require('run-sequence');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-gulp.task('default',    ['typescript', 'serve']);<% if (filters.reload === 'browsersync') { %>
+gulp.task('default',    function (cb) { sq('typescript', 'serve', cb); });<% if (filters.reload === 'browsersync') { %>
 gulp.task('nodemon',    ['watch'],    require('./tasks/serve').nodemon);<% } %>
 gulp.task('typescript-client',        require('./tasks/typescript-client'));
 gulp.task('typescript-server',        require('./tasks/typescript-server'));
