@@ -15,18 +15,19 @@ module <%= capName %>App.Services.Auth {
         private user;
         private ready;
 
-        static $inject = ['$cookieStore', '$q', '$http'];
+        static $inject = ['$cookieStore', '$q', '$http', 'API_SERVER'];
 
         constructor(
             private $cookieStore: ng.cookies.ICookiesService,
             private $q: ng.IQService,
-            private $http: ng.IHttpService) {
+            private $http: ng.IHttpService,
+            private API_SERVER) {
 
             var self = this;
             this.ready = $q.defer();
 
             if ($cookieStore.get('token')) {
-                $http.get('/api/users/me')
+                $http.get(API_SERVER + '/api/users/me')
                     .then(function(res) {
                         self.user = res.data;
                     })
@@ -41,7 +42,7 @@ module <%= capName %>App.Services.Auth {
             var self = this;
             var deferred = this.$q.defer();
 
-            this.$http.post('/api/users', user)
+            this.$http.post(this.API_SERVER + '/api/users', user)
                 .then(function(res: IAuthCallback) {
                     self.user = res.data.user;
                     self.$cookieStore.put('token', res.data.token);
@@ -57,7 +58,7 @@ module <%= capName %>App.Services.Auth {
             var self = this;
             var deferred = this.$q.defer();
 
-            this.$http.post('/auth/local', user)
+            this.$http.post(this.API_SERVER + '/auth/local', user)
                 .then(function(res: IAuthCallback) {
                     self.user = res.data.user;
                     self.$cookieStore.put('token', res.data.token);

@@ -10,6 +10,8 @@ angular.module('<%= appname %>', [
     'btford.socket-io'<% } %>
 ])
 
+    .constant('API_SERVER', 'http://localhost:9000')
+
     .config(function($stateProvider, $urlRouterProvider, $locationProvider<% if (filters.auth) { %>, $httpProvider<% } %>) {
         $urlRouterProvider.otherwise('/login');
         $locationProvider.html5Mode(true);<% if (filters.auth) { %>
