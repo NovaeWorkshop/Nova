@@ -1,19 +1,19 @@
 <nav>
   <ul>
     <li>
-      <a ui-sref="home">home</a>
+      <a href="/">home</a>
     </li>
-    <li ng-if="!Auth.isLogged()">
-      <a ui-sref="signup">signup</a>
+    <li ng-if="!Auth.getUser()">
+      <a href="/signup">signup</a>
     </li>
-    <li ng-if="!Auth.isLogged()">
-      <a ui-sref="login">login</a>
+    <li ng-if="!Auth.getUser()">
+      <a href="/login">login</a>
     </li>
-    <li ng-if="Auth.isLogged()">
-      <a ng-click="Auth.logout()">logout</a>
+    <li ng-if="Auth.getUser()">
+      <a href="" ng-click="Auth.logout()">logout</a>
     </li>
     <li>
-      <pre>logged in: {{ Auth.isLogged() }}</pre>
+      <pre>logged in: {{ !!Auth.getUser() }}</pre>
     </li>
   </ul>
 </nav>
