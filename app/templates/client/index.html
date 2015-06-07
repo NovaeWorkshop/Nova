@@ -2,7 +2,12 @@
 <html ng-app="<%= appname %>">
   <head>
 
-    <base href="/">
+    <script type="text/javascript">
+      // Detect Node (for NodeWebkit and Electron)
+      var isNode = (typeof process === 'object');
+      if (!isNode)
+          document.write('<base href="/">');
+    </script>
 
     <title><%= appname %></title>
 
