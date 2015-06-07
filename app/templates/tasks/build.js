@@ -33,6 +33,9 @@ module.exports = function (done) {
     'replaceAPIServer',
     'rev',
     'clean:finish',
+    <% if (filters.electron) { %>
+      'electron',
+    <% } %>
     done);
 };
 
@@ -49,7 +52,7 @@ gulp.task('clean:finish', function (done) {
 
 gulp.task('copy:dist', function () {
   var main = gulp.src(['server/**/*', '!server/**/*.ts', 'package.json'], { base: './' });
-  var assets = gulp.src('client/assets/**/*', { base: './' });
+  var assets = gulp.src(['client/assets/**/*', 'client/package.json', 'client/electron.js'], { base: './' });
 
   return sq({ objectMode: true }, main, assets)
     .pipe(gulp.dest('dist/'));

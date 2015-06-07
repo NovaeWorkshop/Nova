@@ -1,13 +1,17 @@
-node_modules/
-client/bower_components/
-client/styles/css
-client/**/*.js
-server/api/**/*.js
-server/auth/**/*.js
-server/config/*.js
-server/*.js
-.idea/
-dist/
-.sass-cache/<% if (filters.hasDocs) { %>
-docs/<% } %>
-typings/
+/node_modules/
+/client/bower_components/
+/client/styles/css
+/client/**/*.js
+/server/api/**/*.js
+/server/auth/**/*.js
+/server/config/*.js
+/server/*.js
+/.idea/
+/dist/
+/.sass-cache/<% if (filters.hasDocs) { %>
+/docs/<% } %>
+/typings/
+<% if (filters.electron) { %>
+!/client/electron.js
+<% } %>
+/.cache
