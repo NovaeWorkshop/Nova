@@ -135,6 +135,15 @@ var BangularGenerator = yeoman.generators.Base.extend({
                         name: 'angular-animate',
                         checked: false
                     }]
+            }, {
+                type: 'checkbox',
+                name: 'desktop',
+                message: 'Do you want to generate desktop builds?',
+                choices: [{
+                    value: 'electron',
+                    name: 'Electron (Atom Shell)',
+                    checked: false
+                }]
             }], function (props) {
                 self.capName = _.capitalize(props.name);
                 self.appname = _.camelize(_.slugify(_.humanize(props.name)));
@@ -157,6 +166,12 @@ var BangularGenerator = yeoman.generators.Base.extend({
                 if (props.tests && props.tests.length) {
                     props.tests.forEach(function (test) {
                         self.filters[test] = true;
+                    });
+                }
+
+                if (props.desktop && props.desktop.length) {
+                    props.desktop.forEach(function (desktop) {
+                        self.filters[desktop] = true;
                     });
                 }
 
