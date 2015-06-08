@@ -21,6 +21,7 @@ var uglify               = require('gulp-uglify');<% if (filters.reload === 'liv
 var replace              = require('gulp-replace');<% } %>
 var revAll               = require('gulp-rev-all');
 var revToExclude         = require('./config/revFilesToExclude');
+var config               = require('../server/config/environment');
 
 var toDelete = [];
 
@@ -29,6 +30,7 @@ module.exports = function (done) {
     ['clean:dist', 'sass'],
     ['usemin', 'copy:dist'],
     [<% if (filters.reload === 'livereload') { %>'replace', <% } %>'scripts', 'cssmin'],
+    'replaceAPIServer',
     'rev',
     'clean:finish',
     done);
@@ -94,6 +96,12 @@ gulp.task('replace', function () {
     .pipe(replace(/\s*<script.*livereload.*><\/script>/, ''))
     .pipe(gulp.dest('dist/client'));
 });<% } %>
+
+gulp.task('replaceAPIServer', function () {
+  return gulp.src('dist/client/app.js')
+    .pipe(replace(/\.constant\("API_SERVER",".{0,42}"\)/, '.constant("API_SERVER","' + config.server.url + '")'))
+    .pipe(gulp.dest('dist/client'));
+});
 
 gulp.task('rev', function () {
 
