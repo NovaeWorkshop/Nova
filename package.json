@@ -1,5 +1,5 @@
 {
-  "name": "generator-typebang",
+  "name": "generator-nova",
   "version": "0.0.1",
   "description": "Generate and serve your project in a blink of an eye",
   "license": "BSD",
@@ -10,6 +10,14 @@
     "url": "git://github.com/42Zavattas/generator-bangular.git"
   },
   "contributors": [
+    {
+      "name": "Christophe Feijoo",
+      "url": "https://github.com/kube"
+    },
+    {
+      "name": "Maxime Bacoux",
+      "url": "https://github.com/Nax"
+    },
     {
       "name": "Meriadec Pillet",
       "url": "https://github.com/meriadec"
