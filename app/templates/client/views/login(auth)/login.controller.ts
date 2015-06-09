@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('<%= appname %>')
-    .controller('LoginCtrl', function($location, Auth) {
+    .controller('LoginCtrl', function($location, Auth, $state) {
 
         var vm = this;
 
@@ -25,6 +25,15 @@ angular.module('<%= appname %>')
                     })
                     .catch(function(err) {
                         vm.error = err;
+                    });
+            },
+            
+            facebookLogin: function() {
+                Auth.facebookLogin()
+                    .then(function() {
+                        $state.go('home');
+                    }, function() {
+                        $state.go('login');
                     });
             }
 

@@ -9,6 +9,7 @@ declare module <%= capName %>App {
     interface IAuthService {
         signup: (user: {}) => ng.IPromise<{}>;
         login: (user: {}) => ng.IPromise<{}>;
+        facebookLogin: () => ng.IPromise<{}>;
         logout: () => void;
         isLogged: () => ng.IPromise<boolean>;
         getUser: () => ng.IPromise<{}>;

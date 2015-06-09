@@ -66,6 +66,7 @@
     "mongoose": "^4.0.1"<% } %>,
     "morgan": "^1.5.1"<% if (filters.auth) { %>,
     "passport": "^0.2.1",
+    "passport-facebook": "^2.0.0",
     "passport-local": "^1.0.0"<% } %><% if (filters.backend === 'restock') { %>,
     "request": "^2.51.1"<% } %>,
     "ripe": "^0.2.0"<% if (filters.sockets) { %>,

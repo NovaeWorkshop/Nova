@@ -15,13 +15,15 @@ module <%= capName %>App.Services.Auth {
         private user;
         private ready;
 
-        static $inject = ['$cookieStore', '$q', '$http', 'API_SERVER'];
+        static $inject = ['$cookieStore', '$q', '$http', '$window', '$state', 'API_SERVER'];
 
         constructor(
             private $cookieStore: ng.cookies.ICookiesService,
             private $q: ng.IQService,
             private $http: ng.IHttpService,
-            private API_SERVER) {
+            private $window: ng.IWindowService,
+            private $state: ng.ui.IStateService,
+            private API_SERVER: string) {
 
             var self = this;
             this.ready = $q.defer();
@@ -67,6 +69,42 @@ module <%= capName %>App.Services.Auth {
                 .catch(function(err) {
                     deferred.reject(err.data);
                 });
+            return deferred.promise;
+        }
+
+        facebookLogin() {
+            var self = this;
+            var deferred = this.$q.defer();
+
+            var url = this.API_SERVER + '/auth/facebook',
+                width = 1000,
+                height = 650,
+                top = (window.outerHeight - height) / 2,
+                left = (window.outerWidth - width) / 2,
+                popup = this.$window.open(url, 'facebook_login', 'width=' + width + ',height=' + height + ',scrollbars=0,top=' + top + ',left=' + left + ',titlebar=no,toolbar=no,location=no,directories=no,menubar=no');
+
+            window.addEventListener('message', function(e) {
+                var message = e.data;
+
+                if (message.status === 'success') {
+                    popup.close();
+
+                    self.user = message.user;
+                    self.$cookieStore.put('token', message.token);
+                    self.$state.reload();
+
+                    deferred.resolve();
+
+                } else if (message.status === 'fail') {
+                    popup.close();
+
+                    delete self.user;
+                    self.$cookieStore.remove('token');
+                    self.$state.reload();
+
+                    deferred.reject();
+                }
+            });
             return deferred.promise;
         }
 
