@@ -6,6 +6,7 @@ var _ = require('underscore.string');
 var BangularGenerator = yeoman.generators.NamedBase.extend({
 
     initializing: function () {
+        this.capName = _.capitalize(this.appname);
         this.camelName = _.capitalize(_.camelize(this.name, true));
         this.dashName = _.dasherize(_.decapitalize(this.name));
     },
