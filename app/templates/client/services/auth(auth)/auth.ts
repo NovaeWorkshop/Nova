@@ -15,10 +15,10 @@ module <%= capName %>App.Services.Auth {
         private user;
         private ready;
 
-        static $inject = ['$cookieStore', '$q', '$http', '$window', '$state', 'API_SERVER'];
+        static $inject = ['$localStorage', '$q', '$http', '$window', '$state', 'API_SERVER'];
 
         constructor(
-            private $cookieStore: ng.cookies.ICookiesService,
+            private $localStorage,
             private $q: ng.IQService,
             private $http: ng.IHttpService,
             private $window: ng.IWindowService,
@@ -28,7 +28,7 @@ module <%= capName %>App.Services.Auth {
             var self = this;
             this.ready = $q.defer();
 
-            if ($cookieStore.get('token')) {
+            if ($localStorage.token) {
                 $http.get(API_SERVER + '/api/users/me')
                     .then(function(res) {
                         self.user = res.data;
@@ -47,7 +47,7 @@ module <%= capName %>App.Services.Auth {
             this.$http.post(this.API_SERVER + '/api/users', user)
                 .then(function(res: IAuthCallback) {
                     self.user = res.data.user;
-                    self.$cookieStore.put('token', res.data.token);
+                    self.$localStorage.token = res.data.token;
                     deferred.resolve();
                 })
                 .catch(function(err) {
@@ -63,7 +63,7 @@ module <%= capName %>App.Services.Auth {
             this.$http.post(this.API_SERVER + '/auth/local', user)
                 .then(function(res: IAuthCallback) {
                     self.user = res.data.user;
-                    self.$cookieStore.put('token', res.data.token);
+                    self.$localStorage.token = res.data.token;
                     deferred.resolve();
                 })
                 .catch(function(err) {
@@ -90,7 +90,7 @@ module <%= capName %>App.Services.Auth {
                     popup.close();
 
                     self.user = message.user;
-                    self.$cookieStore.put('token', message.token);
+                    self.$localStorage.token = message.token;
                     self.$state.reload();
 
                     deferred.resolve();
@@ -99,7 +99,7 @@ module <%= capName %>App.Services.Auth {
                     popup.close();
 
                     delete self.user;
-                    self.$cookieStore.remove('token');
+                    delete self.$localStorage.token;
                     self.$state.reload();
 
                     deferred.reject();
@@ -109,7 +109,7 @@ module <%= capName %>App.Services.Auth {
         }
 
         logout() {
-            this.$cookieStore.remove('token');
+            delete this.$localStorage.token;
             delete this.user;
         }
 

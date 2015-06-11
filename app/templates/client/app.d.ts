@@ -15,4 +15,8 @@ declare module <%= capName %>App {
         getUser: () => ng.IPromise<{}>;
     }
 
+    interface IRootScopeService extends ng.IRootScopeService {
+        Auth: IAuthService;
+    }
+
 }

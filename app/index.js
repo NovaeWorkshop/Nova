@@ -117,11 +117,12 @@ var BangularGenerator = yeoman.generators.Base.extend({
                 type: 'checkbox',
                 name: 'modules',
                 message: 'Which module do you want to load?',
-                choices: [{
-                    value: 'ngCookies',
-                    name: 'angular-cookies',
-                    checked: false
-                }, {
+                choices: [
+                    {
+                        value: 'ngStorage',
+                        name: 'ngStorage',
+                        checked: false
+                    }, {
                         value: 'ngResource',
                         name: 'angular-resource',
                         checked: false
@@ -176,7 +177,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
                             self.filters.sockets = props.sockets;
                             self.filters.auth = props.auth;
                             if (props.auth) {
-                                self.filters.ngCookies = true;
+                                self.filters.ngStorage = true;
                             }
                             done();
                         });
