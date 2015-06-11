@@ -6,7 +6,7 @@ module <%= capName %>App.Services.<%= camelName %> {
     class <%= camelName %>Service {
 
         static $inject = [];
-        
+
         constructor() {
 
         }
