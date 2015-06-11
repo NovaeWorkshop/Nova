@@ -1,7 +1,11 @@
-[{
-  "name": "foo"
-}, {
-  "name": "bar"
-}, {
-  "name": "baz"
-}]
+[
+    {
+        "name": "foo"
+    },
+    {
+        "name": "bar"
+    },
+    {
+        "name": "baz"
+    }
+]

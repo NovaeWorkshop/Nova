@@ -2,8 +2,8 @@
 
 var fs = require('fs');
 
-function handleError (res, err) {
-  return res.status(500).send(err);
+function handleError(res, err) {
+    return res.status(500).send(err);
 }
 
 <% if (!filters.apidoc) { %>
@@ -20,11 +20,11 @@ function handleError (res, err) {
  * @apiGroup <%= objectsName %>
  *
  */<% } %>
-exports.index = function (req, res) {
-  fs.readFile('server/api/<%= fileName %>/<%= fileName %>.data.json', 'utf-8', function (err, <%= instancesName %>) {
-    if (err) { return handleError(res, err); }
-    res.status(200).json(JSON.parse(<%= instancesName %>));
-  });
+exports.index = function(req, res) {
+    fs.readFile('server/api/<%= fileName %>/<%= fileName %>.data.json', 'utf-8', function (err, <%= instancesName %>) {
+        if (err) { return handleError(res, err); }
+        res.status(200).json(JSON.parse(<%= instancesName %>));
+    });
 };
 
 <% if (!filters.apidoc) { %>
@@ -41,8 +41,8 @@ exports.index = function (req, res) {
  * @apiGroup <%= objectsName %>
  *
  */<% } %>
-exports.show = function (req, res) {
-  res.status(200).json({});
+exports.show = function(req, res) {
+    res.status(200).json({});
 };
 
 <% if (!filters.apidoc) { %>
@@ -59,8 +59,8 @@ exports.show = function (req, res) {
  * @apiGroup <%= objectsName %>
  *
  */<% } %>
-exports.create = function (req, res) {
-  res.status(201).json({});
+exports.create = function(req, res) {
+    res.status(201).json({});
 };
 
 <% if (!filters.apidoc) { %>
@@ -77,8 +77,8 @@ exports.create = function (req, res) {
  * @apiGroup <%= objectsName %>
  *
  */<% } %>
-exports.update = function (req, res) {
-  res.status(200).json({});
+exports.update = function(req, res) {
+    res.status(200).json({});
 };
 
 <% if (!filters.apidoc) { %>
@@ -95,6 +95,6 @@ exports.update = function (req, res) {
  * @apiGroup <%= objectsName %>
  *
  */<% } %>
-exports.destroy = function (req, res) {
-  return res.status(204);
+exports.destroy = function(req, res) {
+    return res.status(204);
 };
