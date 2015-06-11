@@ -2,12 +2,12 @@
 'use strict';
 
 angular.module('<%= appName %>')
-  .controller('<%= controllerName %>', function () {
+    .controller('<%= controllerName %>', function() {
 
-    var vm = this;
+        var vm = this;
 
-    angular.extend(vm, {
-      name: '<%= controllerName %>'
+        angular.extend(vm, {
+            name: '<%= controllerName %>'
+        });
+
     });
-
-  });

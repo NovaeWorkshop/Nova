@@ -2,5 +2,5 @@
 'use strict';
 
 angular.module('<%= appname %>')
-  .service('<%= camelName %>', function () {
-  });
+    .service('<%= camelName %>', function() {
+    });
