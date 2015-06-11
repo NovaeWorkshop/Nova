@@ -2,17 +2,17 @@
 
 describe('<%= camelName %> filter', function () {
 
-  beforeEach(module('<%= appname %>'));
+    beforeEach(module('<%= appname %>'));
 
-  var <%= camelName %>;
+    var <%= camelName %>;
 
-  beforeEach(inject(function ($filter) {
-    <%= camelName %> = $filter('<%= camelName %>');
-  }));
+    beforeEach(inject(function ($filter) {
+        <%= camelName %> = $filter('<%= camelName %>');
+    }));
 
-  it('should ...', function () {
-    var text = 'bangular is awesome';
-    expect(<%= camelName %>(text)).toBe(text);
-  });
+    it('should ...', function () {
+        var text = 'bangular is awesome';
+        expect(<%= camelName %>(text)).toBe(text);
+    });
 
 });
