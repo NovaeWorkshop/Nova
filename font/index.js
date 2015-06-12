@@ -46,12 +46,12 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
                 }]
         }], function (props) {
 
-                props.types.forEach(function (type) {
-                    this.types[type] = true;
-                }.bind(this));
-
-                done();
+            props.types.forEach(function (type) {
+                this.types[type] = true;
             }.bind(this));
+
+            done();
+        }.bind(this));
     },
 
     writing: function () {
