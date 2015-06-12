@@ -28,12 +28,13 @@ var BangularGenerator = yeoman.generators.Base.extend({
                 var done = this.async();
                 var self = this;
 
-                this.prompt([{
-                    type: 'confirm',
-                    name: 'skipConfig',
-                    message: 'You have a .yo-rc file in this directory, do you want to skip install steps?',
-                    default: true
-                }], function (props) {
+                this.prompt(
+                    [{
+                        type: 'confirm',
+                        name: 'skipConfig',
+                        message: 'You have a .yo-rc file in this directory, do you want to skip install steps?',
+                        default: true
+                    }], function (props) {
                         self.skipConfig = props.skipConfig;
                         self.filters = self.config.get('filters');
                         done();
@@ -49,19 +50,21 @@ var BangularGenerator = yeoman.generators.Base.extend({
         var done = this.async();
         var self = this;
 
-        this.prompt([{
-            type: 'input',
-            name: 'name',
-            message: 'Your project name',
-            default: self.appname
-        }, {
+        this.prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: 'Your project name',
+                default: self.appname
+            }, {
                 type: 'list',
                 name: 'backend',
                 message: 'Choose a backend type',
-                choices: [{
-                    value: 'mongo',
-                    name: 'MongoDb, with Mongoose as ODM'
-                }, {
+                choices: [
+                    {
+                        value: 'mongo',
+                        name: 'MongoDb, with Mongoose as ODM'
+                    }, {
                         value: 'json',
                         name: 'Good old JSON'
                     }, {
@@ -83,11 +86,12 @@ var BangularGenerator = yeoman.generators.Base.extend({
                 type: 'checkbox',
                 name: 'docs',
                 message: 'Do you want to add some documentation generators?',
-                choices: [{
-                    value: 'sassdoc',
-                    name: 'SassDoc',
-                    checked: false
-                }, {
+                choices: [
+                    {
+                        value: 'sassdoc',
+                        name: 'SassDoc',
+                        checked: false
+                    }, {
                         value: 'apidoc',
                         name: 'ApiDoc',
                         checked: false
@@ -96,11 +100,12 @@ var BangularGenerator = yeoman.generators.Base.extend({
                 type: 'checkbox',
                 name: 'tests',
                 message: 'Customize your test suite.',
-                choices: [{
-                    value: 'control',
-                    name: 'JSHint & JSCS',
-                    checked: false
-                }, {
+                choices: [
+                    {
+                        value: 'control',
+                        name: 'JSHint & JSCS',
+                        checked: false
+                    }, {
                         value: 'karma',
                         name: 'Client tests using Karma',
                         checked: false
@@ -178,12 +183,13 @@ var BangularGenerator = yeoman.generators.Base.extend({
                 self.filters.hasTests = self.filters.karma || self.filters.mocha;
 
                 if (props.backend === 'mongo') {
-                    self.prompt([{
-                        type: 'confirm',
-                        name: 'sockets',
-                        message: 'Do you want to add socket support?',
-                        default: false
-                    }, {
+                    self.prompt([
+                        {
+                            type: 'confirm',
+                            name: 'sockets',
+                            message: 'Do you want to add socket support?',
+                            default: false
+                        }, {
                             type: 'confirm',
                             name: 'auth',
                             message: 'Do you want to scaffold a passport authentication process?',
