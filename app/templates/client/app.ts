@@ -21,8 +21,9 @@ module <%= capName %>App {
             $httpProvider: ng.IHttpProvider<% } %>) {
 
             $urlRouterProvider.otherwise('/login');
-            $locationProvider.html5Mode(true);<% if (filters.auth) { %>
-            $httpProvider.interceptors.push('authInterceptor');<% } %>    
+            if (!isNode)
+                $locationProvider.html5Mode(true);<% if (filters.auth) { %>
+            $httpProvider.interceptors.push('authInterceptor');<% } %>
         })<% if (filters.auth) { %>
 
         .factory('authInterceptor', function(
