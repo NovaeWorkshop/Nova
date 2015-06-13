@@ -1,13 +1,13 @@
 <nav>
   <ul>
     <li>
-      <a href="/">home</a>
+      <a ui-sref="home">home</a>
     </li>
     <li ng-if="!Auth.getUser()">
-      <a href="/signup">signup</a>
+      <a ui-sref="signup">signup</a>
     </li>
     <li ng-if="!Auth.getUser()">
-      <a href="/login">login</a>
+      <a ui-sref="login">login</a>
     </li>
     <li ng-if="Auth.getUser()">
       <a href="" ng-click="Auth.logout()">logout</a>
