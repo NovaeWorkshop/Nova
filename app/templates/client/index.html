@@ -3,9 +3,8 @@
   <head>
 
     <script type="text/javascript">
-      // Detect Node (for NodeWebkit and Electron)
-      const isNode = (typeof process === 'object');
-      if (!isNode)
+      var isDesktopApp = (typeof process === 'object');
+      if (!isDesktopApp)
           document.write('<base href="/">');
     </script>
 

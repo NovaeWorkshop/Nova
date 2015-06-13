@@ -21,7 +21,7 @@ module <%= capName %>App {
             $httpProvider: ng.IHttpProvider<% } %>) {
 
             $urlRouterProvider.otherwise('/login');
-            if (!isNode)
+            if (!isDesktopApp)
                 $locationProvider.html5Mode(true);<% if (filters.auth) { %>
             $httpProvider.interceptors.push('authInterceptor');<% } %>
         })<% if (filters.auth) { %>

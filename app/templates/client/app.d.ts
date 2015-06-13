@@ -4,6 +4,8 @@
 /// <reference path="../typings/angular-ui-router/angular-ui-router.d.ts" />
 /// <reference path="../typings/socket.io-client/socket.io-client.d.ts" />
 
+declare var isDesktopApp: boolean;
+
 declare module <%= capName %>App {
 
     interface IAuthService {
