@@ -14,44 +14,44 @@ var bsync      = require('browser-sync');<% } %>
 var config = require('../server/config/environment');
 
 var openOpts = {
-  url: 'http://localhost:' + config.port,
-  already: false
+    url: 'http://localhost:' + config.port,
+    already: false
 };
 
 module.exports = {
 
-  nodemon: function (<% if (filters.reload === 'browsersync') { %>cb<% } %>) {
-    return nodemon({
-        script: 'server/server.js',
-        ext: 'js',
-        ignore: ['client', 'dist', 'node_modules', 'gulpfile.js']
-      })
-      .on('start', function () {
-        if (!openOpts.already) {
-          openOpts.already = true;
-          ripe.wait(<% if (filters.reload === 'livereload') { %>function () {
-            gulp.src('client/index.html')
-              .pipe(open('', openOpts));
-          }<% } else { %>cb<% } %>);
-        } else {
-          ripe.wait(function () {<% if (filters.reload === 'livereload') { %>
-            livereload.changed('/');<% } else { %>
-            bsync.reload({ stream: false });<% } %>
-          });
-        }
-      });
-  }<% if (filters.reload === 'browsersync') { %>,
+    nodemon: function (<% if (filters.reload === 'browsersync') { %>cb<% } %>) {
+        return nodemon({
+                script: 'server/server.js',
+                ext: 'js',
+                ignore: ['client', 'dist', 'node_modules', 'gulpfile.js']
+            })
+            .on('start', function () {
+                if (!openOpts.already) {
+                    openOpts.already = true;
+                    ripe.wait(<% if (filters.reload === 'livereload') { %>function () {
+                        gulp.src('client/index.html')
+                            .pipe(open('', openOpts));
+                    }<% } else { %>cb<% } %>);
+                } else {
+                    ripe.wait(function () {<% if (filters.reload === 'livereload') { %>
+                        livereload.changed('/');<% } else { %>
+                        bsync.reload({ stream: false });<% } %>
+                    });
+                }
+            });
+    }<% if (filters.reload === 'browsersync') { %>,
 
-  bsync: function () {
-    bsync.init({
-      proxy: 'localhost:9000',
-      browser: process.env.BROWSER || 'google chrome',
-      online: false,
-      notify: false,
-      watchOptions: {
-        interval: 500
-      }
-    });
-  }<% } %>
+    bsync: function () {
+        bsync.init({
+            proxy: 'localhost:9000',
+            browser: process.env.BROWSER || 'google chrome',
+            online: false,
+            notify: false,
+            watchOptions: {
+                interval: 500
+            }
+        });
+    }<% } %>
 
 };

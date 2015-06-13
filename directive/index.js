@@ -37,23 +37,19 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     },
 
     writing: function () {
-
         var basePath = 'client/directives/' + this.dashName + '/' + this.dashName;
 
         this.template('directive.ts', basePath + '.directive.ts');
 
         var filters = this.config.get('filters');
 
-        if (filters && filters.karma) {
+        if (filters && filters.karma)
             this.template('directive.spec.js', basePath + '.spec.js');
-        }
 
-        if (this.needTemplate) {
+        if (this.needTemplate)
             this.template('directive.html', basePath + '.html');
-        }
 
         if (this.import) {
-
             this.template('style.scss', basePath + '.scss');
 
             utils.appendNeedleOrOnTop({
@@ -62,13 +58,11 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
                 append: '@import "../directives/' + this.dashName + '/' + this.dashName + '";'
             }, function importCallback(err) {
                     /* istanbul ignore if */
-                    if (err) {
+                    if (err)
                         utils.bangLog('There was an error importing the style.', 'red');
-                    } else {
+                    else
                         utils.bangLog('Your style was successfully injected.', 'green');
-                    }
                 });
-
         }
 
     }

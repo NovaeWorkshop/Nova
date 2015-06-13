@@ -1,16 +1,17 @@
 'use strict';
 
-var path = require('path');
-var mkdir = require('mkdirp');
-var yeoman = require('yeoman-generator');
-var _ = require('underscore.string');
+var path    = require('path'),
+    mkdir   = require('mkdirp'),
+    yeoman  = require('yeoman-generator'),
+    _       = require('underscore.string');
 
-var utils = require('../util');
-var bangAscii = require('./ascii');
+var utils     = require('../util'),
+    bangAscii = require('./ascii');
 
 var BangularGenerator = yeoman.generators.Base.extend({
 
     initializing: {
+
         getVars: function () {
             this.appname = this.appname || path.basename(process.cwd());
             this.capName = _.capitalize(this.appname);
@@ -18,13 +19,15 @@ var BangularGenerator = yeoman.generators.Base.extend({
             this.filters = {};
             this.pkg = require('../package.json');
         },
+
         info: function () {
-            if (this.options.skipLog) { return; }
+            if (this.options.skipLog)
+                return;
             this.log(bangAscii);
         },
+
         checkConfig: function () {
             if (this.config.get('filters')) {
-
                 var done = this.async();
                 var self = this;
 
@@ -45,7 +48,8 @@ var BangularGenerator = yeoman.generators.Base.extend({
 
     prompting: function () {
 
-        if (this.skipConfig) { return; }
+        if (this.skipConfig)
+            return;
 
         var done = this.async();
         var self = this;
@@ -75,10 +79,11 @@ var BangularGenerator = yeoman.generators.Base.extend({
                 type: 'list',
                 name: 'reload',
                 message: 'Which development tool do you want for browser reloading / synchronising?',
-                choices: [{
-                    value: 'livereload',
-                    name: 'Livereload'
-                }, {
+                choices: [
+                    {
+                        value: 'livereload',
+                        name: 'Livereload'
+                    }, {
                         value: 'browsersync',
                         name: 'BrowserSync'
                     }]
@@ -210,7 +215,8 @@ var BangularGenerator = yeoman.generators.Base.extend({
     },
 
     saveSettings: function () {
-        if (this.skipConfig) { return; }
+        if (this.skipConfig)
+            return;
 
         this.config.set('version', this.pkg.version);
         this.config.set('filters', this.filters);
@@ -226,9 +232,9 @@ var BangularGenerator = yeoman.generators.Base.extend({
 
     end: function () {
         /* istanbul ignore if */
-        if (!this.options.skipInstall) {
+        if (!this.options.skipInstall)
             utils.bangLog('Installing dependencies...', 'yellow');
-        }
+
         this.installDependencies({
             skipInstall: this.options.skipInstall,
             skipMessage: true,

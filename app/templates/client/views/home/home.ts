@@ -2,18 +2,18 @@
 'use strict';
 
 angular.module('<%= appname %>')
-  .config(function($stateProvider) {
+    .config(function($stateProvider) {
 
-    $stateProvider
-      .state('home', {
-        url: '/home',
-        views: {
-          'app': {
-            templateUrl: 'views/home/home.html',
-            controller: 'HomeCtrl',
-            controllerAs: 'vm'
-          }
-        }
-      });
+        $stateProvider
+            .state('home', {
+                url: '/home',
+                views: {
+                    'app': {
+                        templateUrl: 'views/home/home.html',
+                        controller: 'HomeCtrl',
+                        controllerAs: 'vm'
+                    }
+                }
+            });
 
-  });
+    });

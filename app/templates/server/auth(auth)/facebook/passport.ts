@@ -1,9 +1,9 @@
 /// <reference path="../../server.d.ts" />
 'use strict';
 
-var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
-var config = require('../../config/environment');
+var passport         = require('passport'),
+    FacebookStrategy = require('passport-facebook').Strategy,
+    config           = require('../../config/environment');
 
 exports.setup = function(User) {
 

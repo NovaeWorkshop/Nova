@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: SignupCtrl', function () {
+describe('Controller: SignupCtrl', function() {
 
-  beforeEach(module('<%= appname %>'));
+    beforeEach(module('<%= appname %>'));
 
-  var SignupCtrl;
+    var SignupCtrl;
 
-  beforeEach(inject(function ($controller) {
-    SignupCtrl = $controller('SignupCtrl', {});
-  }));
+    beforeEach(inject(function($controller) {
+        SignupCtrl = $controller('SignupCtrl', {});
+    }));
 
-  it('should ...', function () {
-    expect(1).toBe(1);
-  });
+    it('should ...', function() {
+        expect(1).toBe(1);
+    });
 
 });

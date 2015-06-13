@@ -1,8 +1,8 @@
 /// <reference path="../../server.d.ts" />
 'use strict';
 
-var path = require('path');
-var _ = require('lodash');
+var path = require('path'),
+    _    = require('lodash');
 
 var all = {
 

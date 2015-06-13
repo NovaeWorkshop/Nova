@@ -1,9 +1,9 @@
 /// <reference path="../../server.d.ts" />
 'use strict';
 
-var express = require('express');
-var passport = require('passport');
-var auth = require('../auth.service');
+var express  = require('express'),
+    passport = require('passport'),
+    auth     = require('../auth.service');
 
 var router = express.Router();
 
