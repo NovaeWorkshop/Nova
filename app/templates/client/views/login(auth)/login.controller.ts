@@ -1,42 +1,39 @@
 /// <reference path="../../app.d.ts" />
 'use strict';
 
-angular.module('<%= appname %>')
-    .controller('LoginCtrl', function($location, Auth, $state) {
+module <%= capName %>App.Views.Login {
 
-        var vm = this;
+    class LoginController {
 
-        angular.extend(vm, {
+        public name = 'LoginCtrl';
+        public user;
+        public error;
 
-            name: 'LoginCtrl',
+        static $inject = ['$location', '$state', 'Auth'];
+        
+        constructor(
+            private $location: ng.ILocationService,
+            private $state: ng.ui.IStateService,
+            private Auth: IAuthService) {
 
-            /**
-             * User credentials
-             */
-            user: { email: 'test@test.com', password: 'test' },
+            this.user = {
+                email: 'test@test.com',
+                password: 'test'
+            };
+        }
 
-            /**
-             * Login method
-             */
-            login: function() {
-                Auth.login(vm.user)
-                    .then(function() {
-                        $location.path('/');
-                    })
-                    .catch(function(err) {
-                        vm.error = err;
-                    });
-            },
-            
-            facebookLogin: function() {
-                Auth.facebookLogin()
-                    .then(function() {
-                        $state.go('home');
-                    }, function() {
-                        $state.go('login');
-                    });
-            }
+        login() {
+            this.Auth.login(this.user)
+                .then(() => this.$location.path('/'))
+                .catch(err => this.error = err);
+        }
 
-        });
+        facebookLogin() {
+            this.Auth.facebookLogin()
+                .t8hen(() => this.$state.go('home'),
+                    () => this.$state.go('login'));
+        }
+    }
 
-    });
+    angular.module('<%= appname %>').controller('LoginCtrl', LoginController);
+}
