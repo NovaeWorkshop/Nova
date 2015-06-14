@@ -35,8 +35,9 @@ module <%= capName %>App {
 
                 request: function(config) {
                     config.headers = config.headers || {};
-                    if ($localStorage.token)
+                    if ($localStorage.token) {
                         config.headers.Authorization = 'Bearer ' + $localStorage.token;
+                    }
 
                     return config;
                 },
@@ -47,17 +48,11 @@ module <%= capName %>App {
                         delete $localStorage.token;
                         return $q.reject(response);
                     }
-                    else
+                    else {
                         return $q.reject(response);
+                    }
                 }
             };
-        })
-
-        .run(function(
-            $rootScope: IRootScopeService,
-            Auth: IAuthService) {
-
-            $rootScope.Auth = Auth;
         })<% } %>;
 
 }
