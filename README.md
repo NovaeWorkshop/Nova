@@ -1,19 +1,11 @@
-<p align="center">
-  <img src="http://media.bangular.io/simple-logo.png">
-</p>
-<h1 align="center">generator-bangular</h1>
-<p align="center">
-  <a href="https://circleci.com/gh/42Zavattas/generator-bangular"><img src="https://circleci-badges.herokuapp.com/42Zavattas/generator-bangular/fd88a2cf8197ee2e026ceab5b76683a60596540c"></a>
-  <a href="https://coveralls.io/r/42Zavattas/generator-bangular"><img src="https://coveralls.io/repos/42Zavattas/generator-bangular/badge.svg"></a>
-  <a href="https://codeclimate.com/github/42Zavattas/generator-bangular"><img src="https://codeclimate.com/github/42Zavattas/generator-bangular/badges/gpa.svg"></a>
-  <a href="https://david-dm.org/42Zavattas/generator-bangular"><img src="https://david-dm.org/42Zavattas/generator-bangular.svg"></a>
-</p>
+<h1 align="center">Nova</h1>
 
-![logos](logos/logos-sprite.png "logos")
+> This project is based on the [Bangular generator](https://github.com/42Zavattas/generator-bangular)
 
-> *« Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away. »* — ***Antoine De Saint-Exupéry***
+Nova is a simple, yet efficient generator, used to scaffold web projects.
 
-<a href="https://github.com/42Zavattas/bangular-demo" target="_blank">Source code</a> or <a href="http://demo.bangular.io" target="_blank">live demo</a> of generated project.
+*Nova is still under heavy development.  
+Tests may be broken.*
 
 Features:
 
@@ -36,18 +28,18 @@ Optional:
 
 # Install
 
-    npm install -g generator-bangular
-    yo bangular
+    npm install -g nova-generator
+    yo nova
 
 ### Table of contents
 
-- [Manage project](https://github.com/42Zavattas/generator-bangular#manage-project)
-- [Generators](https://github.com/42Zavattas/generator-bangular#generators)
-- [HOWTOs](https://github.com/42Zavattas/generator-bangular#howtos)
-  - [Protractor](https://github.com/42Zavattas/generator-bangular#protractor)
-  - [Sockets](https://github.com/42Zavattas/generator-bangular#sockets)
-  - [Passport](https://github.com/42Zavattas/generator-bangular#passport)
-- [Architecture](https://github.com/42Zavattas/generator-bangular#architecture)
+- [Manage project](https://github.com/NovaeWorkshop/nova#manage-project)
+- [Generators](https://github.com/NovaeWorkshop/nova#generators)
+- [HOWTOs](https://github.com/NovaeWorkshop/nova#howtos)
+  - [Protractor](https://github.com/NovaeWorkshop/nova#protractor)
+  - [Sockets](https://github.com/NovaeWorkshop/nova#sockets)
+  - [Passport](https://github.com/NovaeWorkshop/nova#passport)
+- [Architecture](https://github.com/NovaeWorkshop/nova#architecture)
 
 # Manage project
 
@@ -77,28 +69,28 @@ Bump versions of `package.json` and `bower.json` files using *Semantic Versionin
 
     gulp e2e
 
-Launch your server and then run protractor tests. See [protractor howtos](https://github.com/42Zavattas/generator-bangular#protractor).
+Launch your server and then run protractor tests. See [protractor howtos](https://github.com/NovaeWorkshop/nova#protractor).
 
 # Generators
 
  - Global
-  - [app](https://github.com/42Zavattas/generator-bangular#app)
+  - [app](https://github.com/NovaeWorkshop/nova#app)
  - Client
-  - [directive](https://github.com/42Zavattas/generator-bangular#directive)
-  - [filter](https://github.com/42Zavattas/generator-bangular#filter)
-  - [font](https://github.com/42Zavattas/generator-bangular#font)
-  - [route](https://github.com/42Zavattas/generator-bangular#route)
-  - [service / factory](https://github.com/42Zavattas/generator-bangular#service)
-  - [style](https://github.com/42Zavattas/generator-bangular#style)
-  - [animation](https://github.com/42Zavattas/generator-bangular#animation)
+  - [directive](https://github.com/NovaeWorkshop/nova#directive)
+  - [filter](https://github.com/NovaeWorkshop/nova#filter)
+  - [font](https://github.com/NovaeWorkshop/nova#font)
+  - [route](https://github.com/NovaeWorkshop/nova#route)
+  - [service / factory](https://github.com/NovaeWorkshop/nova#service)
+  - [style](https://github.com/NovaeWorkshop/nova#style)
+  - [animation](https://github.com/NovaeWorkshop/nova#animation)
  - Server
-  - [api](https://github.com/42Zavattas/generator-bangular#api)
+  - [api](https://github.com/NovaeWorkshop/nova#api)
 
 ## App
 
-This is the main generator of Bangular, that will scaffold entierely your project based on your needs.
+This is the main generator of Nova, that will scaffold entierely your project based on your needs.
 
-    yo bangular || yo bangular <appName>
+    yo nova || yo nova <appName>
 
 **Backend type**: MongoDB / [Restock](https://github.com/42Zavattas/Restock.io) / Json<br>
 **Modules**     : angular-cookies || angular-resource || angular-sanitize || angular-animate<br>
@@ -107,26 +99,26 @@ This is the main generator of Bangular, that will scaffold entierely your projec
 
 ## Directive
 
-    yo bangular:directive <name>
+    yo nova:directive <name>
 
 The **name** parameter is required. Directives will be generated at `client/directives/`. You can specify if your directive needs an html template or not.
 
 ## Filter
 
-    yo bangular:filter <name>
+    yo nova:filter <name>
 
 The **name** parameter is required. Filters will be generated at `client/filters/`.
 
 ## Font
 
-    yo bangular:font <name>
+    yo nova:font <name>
 
 The **name** parameter is required. Fonts will generate a new folder in `client/assets/fonts/` and a `.scss` file importing all of these fonts in your app.
 It will be imported in your `app.scss` file either on top of the file or after the `// imports` mark if specified.
 
 ## Route
 
-    yo bangular:route <name>
+    yo nova:route <name>
 
 **Url**: Client url to access the route.
 
@@ -141,14 +133,14 @@ The **name** parameter is required. This will create in `client/views/`:
 
 ## Service
 
-    yo bangular:service <name>
-    yo bangular:factory <name>
+    yo nova:service <name>
+    yo nova:factory <name>
 
 The **name** parameter is required. The service / factory and its spec file will be generated at `client/services/`.
 
 ## Style
 
-    yo bangular:style <name>
+    yo nova:style <name>
 
 **Inject**: If true, an `@import` will be added to the main *app.scss* file to add the style to your app.
 You can specify the location of your new imports by adding a `// imports` in the file.
@@ -157,7 +149,7 @@ The **name** parameter is required. This will create a new `.scss` file in he `c
 
 ## Animation
 
-    yo bangular:anim <name>
+    yo nova:anim <name>
 
 Creates an angular animation file in `client/animations/`.
 You can choose which event(s) you want to capture, including `enter`, `leave`, `move`, `addClass`, `removeClass`.
@@ -166,7 +158,7 @@ You need to have `ngAnimate` as dependency.
 
 ## Api
 
-    yo bangular:api <name>
+    yo nova:api <name>
 
 **Url**: Route that will be exposed on your server to access this ressource.<br>
 **Socket**: If you want to emit socket event on model changes (only with mongo & sockets).<br>
