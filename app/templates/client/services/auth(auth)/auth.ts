@@ -25,55 +25,43 @@ module <%= capName %>App.Services.Auth {
             private $state: ng.ui.IStateService,
             private API_SERVER: string) {
 
-            var self = this;
             this.ready = $q.defer();
 
             if ($localStorage.token) {
                 $http.get(API_SERVER + '/api/users/me')
-                    .then(function(res) {
-                        self.user = res.data;
-                    })
-                    .finally(function() {
-                        self.ready.resolve();
-                    });
+                    .then(res => this.user = res.data)
+                    .finally(() => this.ready.resolve());
             } else
-                self.ready.resolve();
+                this.ready.resolve();
         }
 
         signup(user) {
-            var self = this;
             var deferred = this.$q.defer();
 
             this.$http.post(this.API_SERVER + '/api/users', user)
-                .then(function(res: IAuthCallback) {
-                    self.user = res.data.user;
-                    self.$localStorage.token = res.data.token;
+                .then((res: IAuthCallback) => {
+                    this.user = res.data.user;
+                    this.$localStorage.token = res.data.token;
                     deferred.resolve();
                 })
-                .catch(function(err) {
-                    deferred.reject(err.data);
-                });
+                .catch(err => deferred.reject(err.data));
             return deferred.promise;
         }
 
         login(user) {
-            var self = this;
             var deferred = this.$q.defer();
 
             this.$http.post(this.API_SERVER + '/auth/local', user)
-                .then(function(res: IAuthCallback) {
-                    self.user = res.data.user;
-                    self.$localStorage.token = res.data.token;
+                .then((res: IAuthCallback) => {
+                    this.user = res.data.user;
+                    this.$localStorage.token = res.data.token;
                     deferred.resolve();
                 })
-                .catch(function(err) {
-                    deferred.reject(err.data);
-                });
+                .catch(err => deferred.reject(err.data));
             return deferred.promise;
         }
 
         facebookLogin() {
-            var self = this;
             var deferred = this.$q.defer();
 
             var url = this.API_SERVER + '/auth/facebook',
@@ -83,24 +71,24 @@ module <%= capName %>App.Services.Auth {
                 left = (window.outerWidth - width) / 2,
                 popup = this.$window.open(url, 'facebook_login', 'width=' + width + ',height=' + height + ',scrollbars=0,top=' + top + ',left=' + left + ',titlebar=no,toolbar=no,location=no,directories=no,menubar=no');
 
-            window.addEventListener('message', function(e) {
+            window.addEventListener('message', e => {
                 var message = e.data;
 
                 if (message.status === 'success') {
                     popup.close();
 
-                    self.user = message.user;
-                    self.$localStorage.token = message.token;
-                    self.$state.reload();
+                    this.user = message.user;
+                    this.$localStorage.token = message.token;
+                    this.$state.reload();
 
                     deferred.resolve();
 
                 } else if (message.status === 'fail') {
                     popup.close();
 
-                    delete self.user;
-                    delete self.$localStorage.token;
-                    self.$state.reload();
+                    delete this.user;
+                    delete this.$localStorage.token;
+                    this.$state.reload();
 
                     deferred.reject();
                 }
@@ -114,11 +102,10 @@ module <%= capName %>App.Services.Auth {
         }
 
         isLogged() {
-            var self = this;
             var def = this.$q.defer();
 
-            this.ready.promise.then(function() {
-                if (typeof self.user !== 'undefined')
+            this.ready.promise.then(() => {
+                if (typeof this.user !== 'undefined')
                     def.resolve();
                 else
                     def.reject();
