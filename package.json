@@ -3,11 +3,11 @@
     "version": "0.0.1",
     "description": "Generate and serve your project in a blink of an eye",
     "license": "BSD",
-    "homepage": "https://github.com/42Zavattas/generator-bangular",
-    "bugs": "https://github.com/42Zavattas/generator-bangular/issues",
+    "homepage": "https://github.com/NovaeWorkshop/nova",
+    "bugs": "https://github.com/NovaeWorkshop/nova/issues",
     "repository": {
         "type": "git",
-        "url": "git://github.com/42Zavattas/generator-bangular.git"
+        "url": "git://github.com/NovaeWorkshop/nova.git"
     },
     "contributors": [
         {
