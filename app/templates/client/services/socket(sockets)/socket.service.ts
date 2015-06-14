@@ -1,8 +1,9 @@
 /// <reference path="../../app.d.ts" />
 'use strict';
 
-angular.module('<%= appname %>')
-    .factory('Socket', function(socketFactory) {
+module <%= capName %>App.Factories.Socket {
+
+    function SocketFactory(socketFactory): ISocketFactory {
 
         var ioSocket = io('', {
             path: '/socket.io'
@@ -13,41 +14,26 @@ angular.module('<%= appname %>')
         var socket = socketFactory({ ioSocket: ioSocket });
 
         function idMap(items) {
-            return items.map(function(e) { return e._id; });
+            return items.map(e => e._id);
         }
 
         return {
 
-            /**
-             * Simply emit a socket
-             */
             emit: socket.emit,
 
-            /**
-             * Listen for an event in the callback
-             */
-            on: function(pattern, cb) {
+            on: (pattern, cb) => {
                 subs.push(pattern);
                 socket.on(pattern, cb);
             },
 
-            /**
-             * Remove all subscriptions that occured with the on method,
-             * call it on the $destroy event.
-             */
-            clean: function() {
-                subs.forEach(function(sub) {
-                    socket.removeAllListeners(sub);
-                });
+            clean: () => {
+                subs.forEach(sub => socket.removeAllListeners(sub));
                 subs = [];
             },
 
-            /**
-             * Add a sync for a given model
-             */
-            syncModel: function(model, items) {
+            syncModel: (model, items) => {
 
-                socket.on(model + ':save', function(doc) {
+                socket.on(model + ':save', doc => {
                     var index = idMap(items).indexOf(doc._id);
                     if (index === -1) {
                         items.push(doc);
@@ -56,7 +42,7 @@ angular.module('<%= appname %>')
                     }
                 });
 
-                socket.on(model + ':remove', function(doc) {
+                socket.on(model + ':remove', doc => {
                     var index = idMap(items).indexOf(doc._id);
                     if (index !== -1) {
                         items.splice(index, 1);
@@ -65,13 +51,14 @@ angular.module('<%= appname %>')
 
             },
 
-            /**
-             * Remove listeners for a model
-             */
-            unsyncModel: function(model) {
+            unsyncModel: model => {
                 socket.removeAllListeners(model + ':save');
                 socket.removeAllListeners(model + ':remove');
             }
         };
+    }
+    
+    SocketFactory.$inject['socketFactory'];
 
-    });
+    angular.module('<%= appname %>').factory('Socket', SocketFactory);
+}
