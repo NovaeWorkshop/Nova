@@ -1,13 +1,17 @@
 /// <reference path="../../app.d.ts" />
 'use strict';
 
-angular.module('<%= appname %>')
-    .directive('<%= camelName %>', function () {
-        return {
-            restrict: 'EA',
-                <% if (needTemplate) { %>templateUrl: 'directives/<%= dashName %>/<%= dashName %>.html',
-            <% } %>link: function (scope, element) {
-                element.text('<%= camelName %> directive');
-            }
-        };
+module <%= capName %>App.Directives.<%= camelName %> {
+
+    angular.module('<%= appname %>')
+        .directive('<%= camelName %>', function () {
+            return {
+                restrict: 'EA',
+                    <% if (needTemplate) { %>templateUrl: 'directives/<%= dashName %>/<%= dashName %>.html',
+                <% } %>link: function (scope, element, attrs) {
+                    element.text('<%= camelName %> directive');
+                }
+            };
     });
+
+}
