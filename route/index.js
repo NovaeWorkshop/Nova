@@ -6,7 +6,7 @@ var _ = require('underscore.string');
 
 var utils = require('../util');
 
-var BangularGenerator = yeoman.generators.NamedBase.extend({
+var NovaGenerator = yeoman.generators.NamedBase.extend({
 
     initializing: function () {
         this.appName = _.camelize(this.appname);
@@ -84,4 +84,4 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
 
 });
 
-module.exports = BangularGenerator;
+module.exports = NovaGenerator;

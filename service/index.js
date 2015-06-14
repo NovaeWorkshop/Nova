@@ -3,7 +3,7 @@
 var yeoman = require('yeoman-generator');
 var _ = require('underscore.string');
 
-var BangularGenerator = yeoman.generators.NamedBase.extend({
+var NovaGenerator = yeoman.generators.NamedBase.extend({
 
     initializing: function () {
         this.capName = _.capitalize(this.appname);
@@ -27,4 +27,4 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
 
 });
 
-module.exports = BangularGenerator;
+module.exports = NovaGenerator;

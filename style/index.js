@@ -5,7 +5,7 @@ var yeoman = require('yeoman-generator');
 
 var utils = require('../util');
 
-var BangularGenerator = yeoman.generators.NamedBase.extend({
+var NovaGenerator = yeoman.generators.NamedBase.extend({
 
     prompting: function () {
 
@@ -50,4 +50,4 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
 
 });
 
-module.exports = BangularGenerator;
+module.exports = NovaGenerator;

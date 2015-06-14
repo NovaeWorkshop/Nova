@@ -8,7 +8,7 @@ var path    = require('path'),
 var utils     = require('../util'),
     bangAscii = require('./ascii');
 
-var BangularGenerator = yeoman.generators.Base.extend({
+var NovaGenerator = yeoman.generators.Base.extend({
 
     initializing: {
 
@@ -245,4 +245,4 @@ var BangularGenerator = yeoman.generators.Base.extend({
     }
 });
 
-module.exports = BangularGenerator;
+module.exports = NovaGenerator;
