@@ -58,7 +58,7 @@ module <%= capName %>App.Factories.Socket {
         };
     }
     
-    SocketFactory.$inject['socketFactory'];
+    SocketFactory.$inject = ['socketFactory'];
 
     angular.module('<%= appname %>').factory('Socket', SocketFactory);
 }
