@@ -10,7 +10,7 @@ module <%= capName %>App.Views.Login {
         public error;
 
         static $inject = ['$location', '$state', 'Auth'];
-        
+
         constructor(
             private $location: ng.ILocationService,
             private $state: ng.ui.IStateService,
@@ -30,7 +30,7 @@ module <%= capName %>App.Views.Login {
 
         facebookLogin() {
             this.Auth.facebookLogin()
-                .t8hen(() => this.$state.go('home'),
+                .then(() => this.$state.go('home'),
                     () => this.$state.go('login'));
         }
     }
