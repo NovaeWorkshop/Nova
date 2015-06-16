@@ -13,7 +13,7 @@ module <%= capName %>App.Services.Auth {
     class AuthService implements IAuthService {
 
         private _user;
-        private _ready: ng.IPromise<boolean>;
+        private _ready: ng.IDeferred<boolean>;
 
         static $inject = ['$localStorage', '$q', '$http', '$window', '$state', 'API_SERVER'];
 
