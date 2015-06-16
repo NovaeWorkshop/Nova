@@ -51,13 +51,13 @@ module <%= capName %>App.Factories.Socket {
 
             },
 
-            unsyncModel: model => {
+            unsyncModel: (model) => {
                 socket.removeAllListeners(model + ':save');
                 socket.removeAllListeners(model + ':remove');
             }
         };
     }
-    
+
     SocketFactory.$inject = ['socketFactory'];
 
     angular.module('<%= appname %>').factory('Socket', SocketFactory);
