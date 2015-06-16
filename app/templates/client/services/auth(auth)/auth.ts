@@ -13,7 +13,7 @@ module <%= capName %>App.Services.Auth {
     class AuthService implements IAuthService {
 
         private _user;
-        private _ready;
+        private _ready: ng.IPromise<boolean>;
 
         static $inject = ['$localStorage', '$q', '$http', '$window', '$state', 'API_SERVER'];
 
@@ -30,9 +30,13 @@ module <%= capName %>App.Services.Auth {
             if ($localStorage.token) {
                 $http.get(API_SERVER + '/api/users/me')
                     .then(res => this._user = res.data)
-                    .finally(() => this._ready.resolve());
+                    .finally(() => this._ready.resolve(true));
             } else
-                this._ready.resolve();
+                this._ready.resolve(true);
+        }
+
+        ready() {
+            return this._ready.promise;
         }
 
         signup(user) {
@@ -102,15 +106,7 @@ module <%= capName %>App.Services.Auth {
         }
 
         isLogged() {
-            var def = this.$q.defer();
-
-            this._ready.promise.then(() => {
-                if (typeof this._user !== 'undefined')
-                    def.resolve();
-                else
-                    def.reject();
-            });
-            return def.promise;
+            return typeof this._user !== 'undefined';
         }
 
         getUser() {
