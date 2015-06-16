@@ -12,8 +12,8 @@ module <%= capName %>App.Services.Auth {
 
     class AuthService implements IAuthService {
 
-        private user;
-        private ready;
+        private _user;
+        private _ready;
 
         static $inject = ['$localStorage', '$q', '$http', '$window', '$state', 'API_SERVER'];
 
@@ -25,14 +25,14 @@ module <%= capName %>App.Services.Auth {
             private $state: ng.ui.IStateService,
             private API_SERVER: string) {
 
-            this.ready = $q.defer();
+            this._ready = $q.defer();
 
             if ($localStorage.token) {
                 $http.get(API_SERVER + '/api/users/me')
-                    .then(res => this.user = res.data)
-                    .finally(() => this.ready.resolve());
+                    .then(res => this._user = res.data)
+                    .finally(() => this._ready.resolve());
             } else
-                this.ready.resolve();
+                this._ready.resolve();
         }
 
         signup(user) {
@@ -40,7 +40,7 @@ module <%= capName %>App.Services.Auth {
 
             this.$http.post(this.API_SERVER + '/api/users', user)
                 .then((res: IAuthCallback) => {
-                    this.user = res.data.user;
+                    this._user = res.data.user;
                     this.$localStorage.token = res.data.token;
                     deferred.resolve();
                 })
@@ -53,7 +53,7 @@ module <%= capName %>App.Services.Auth {
 
             this.$http.post(this.API_SERVER + '/auth/local', user)
                 .then((res: IAuthCallback) => {
-                    this.user = res.data.user;
+                    this._user = res.data.user;
                     this.$localStorage.token = res.data.token;
                     deferred.resolve();
                 })
@@ -77,7 +77,7 @@ module <%= capName %>App.Services.Auth {
                 if (message.status === 'success') {
                     popup.close();
 
-                    this.user = message.user;
+                    this._user = message.user;
                     this.$localStorage.token = message.token;
                     this.$state.reload();
 
@@ -86,7 +86,7 @@ module <%= capName %>App.Services.Auth {
                 } else if (message.status === 'fail') {
                     popup.close();
 
-                    delete this.user;
+                    delete this._user;
                     delete this.$localStorage.token;
                     this.$state.reload();
 
@@ -98,14 +98,14 @@ module <%= capName %>App.Services.Auth {
 
         logout() {
             delete this.$localStorage.token;
-            delete this.user;
+            delete this._user;
         }
 
         isLogged() {
             var def = this.$q.defer();
 
-            this.ready.promise.then(() => {
-                if (typeof this.user !== 'undefined')
+            this._ready.promise.then(() => {
+                if (typeof this._user !== 'undefined')
                     def.resolve();
                 else
                     def.reject();
@@ -114,7 +114,7 @@ module <%= capName %>App.Services.Auth {
         }
 
         getUser() {
-            return this.user;
+            return this._user;
         }
     }
 
