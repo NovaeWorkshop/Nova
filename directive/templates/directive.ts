@@ -4,14 +4,14 @@
 module <%= capName %>App.Directives.<%= camelName %> {
 
     angular.module('<%= appname %>')
-        .directive('<%= camelName %>', function () {
+        .directive('<%= camelName %>', function() {
             return {
-                restrict: 'EA',
-                    <% if (needTemplate) { %>templateUrl: 'directives/<%= dashName %>/<%= dashName %>.html',
-                <% } %>link: function (scope, element, attrs) {
+                restrict: 'EA',<% if (needTemplate) { %>
+                templateUrl: 'directives/<%= dashName %>/<%= dashName %>.html',<% } %>
+                link: function (scope, element, attrs) {
                     element.text('<%= camelName %> directive');
                 }
             };
-    });
+        });
 
 }
