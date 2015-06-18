@@ -7,6 +7,11 @@
 declare var isDesktopApp: boolean;
 
 declare module <%= capName %>App {
+
+    interface IAppConfig {
+        API_SERVER: string;
+        IS_DESKTOP_APP: boolean;
+    }
 <% if (filters.auth) { %>
     interface IAuthService {
         ready: () => ng.IPromise<boolean>;

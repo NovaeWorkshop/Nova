@@ -15,7 +15,7 @@ module <%= capName %>App.Services.Auth {
         private _user;
         private _ready: ng.IDeferred<boolean>;
 
-        static $inject = ['$localStorage', '$q', '$http', '$window', '$state', 'API_SERVER'];
+        static $inject = ['$localStorage', '$q', '$http', '$window', '$state', 'CONFIG'];
 
         constructor(
             private $localStorage,
@@ -23,12 +23,12 @@ module <%= capName %>App.Services.Auth {
             private $http: ng.IHttpService,
             private $window: ng.IWindowService,
             private $state: ng.ui.IStateService,
-            private API_SERVER: string) {
+            private CONFIG: IAppConfig) {
 
             this._ready = $q.defer();
 
             if ($localStorage.token) {
-                $http.get(API_SERVER + '/api/users/me')
+                $http.get(CONFIG.API_SERVER + '/api/users/me')
                     .then(res => this._user = res.data)
                     .finally(() => this._ready.resolve(true));
             } else
@@ -42,7 +42,7 @@ module <%= capName %>App.Services.Auth {
         signup(user) {
             var deferred = this.$q.defer();
 
-            this.$http.post(this.API_SERVER + '/api/users', user)
+            this.$http.post(this.CONFIG.API_SERVER + '/api/users', user)
                 .then((res: IAuthCallback) => {
                     this._user = res.data.user;
                     this.$localStorage.token = res.data.token;
@@ -55,7 +55,7 @@ module <%= capName %>App.Services.Auth {
         login(user) {
             var deferred = this.$q.defer();
 
-            this.$http.post(this.API_SERVER + '/auth/local', user)
+            this.$http.post(this.CONFIG.API_SERVER + '/auth/local', user)
                 .then((res: IAuthCallback) => {
                     this._user = res.data.user;
                     this.$localStorage.token = res.data.token;
@@ -68,7 +68,7 @@ module <%= capName %>App.Services.Auth {
         facebookLogin() {
             var deferred = this.$q.defer();
 
-            var url = this.API_SERVER + '/auth/facebook',
+            var url = this.CONFIG.API_SERVER + '/auth/facebook',
                 width = 1000,
                 height = 650,
                 top = (window.outerHeight - height) / 2,
