@@ -10,7 +10,8 @@ var NovaGenerator = yeoman.generators.NamedBase.extend({
 
     initializing: function () {
         this.appName = _.camelize(this.appname);
-        this.controllerName = _.capitalize(_.camelize(this.name)) + 'Ctrl';
+        this.capName = _.capitalize(this.appName);
+        this.controllerName = _.capitalize(_.camelize(this.name)) + 'Controller';
         this.dashName = _.dasherize(this.name);
     },
 
