@@ -60,23 +60,23 @@ var NovaGenerator = yeoman.generators.NamedBase.extend({
 
         var filters = this.config.get('filters');
         var filesByBackendType = {
-            mongo: ['controller.js', 'model.js'],
-            json: ['controller.js', 'data.json'],
-            restock: ['controller.js']
+            mongo: ['controller.ts', 'model.ts'],
+            json: ['controller.ts', 'data.json'],
+            restock: ['controller.ts']
         };
 
         if (filters && filters.mocha) {
             filesByBackendType.mongo.push('spec.js');
         }
 
-        this.template('index.js', 'server/api/' + this.fileName + '/index.js');
+        this.template('index.ts', 'server/api/' + this.fileName + '/index.ts');
 
         filesByBackendType[filters.backend].forEach(function (file) {
             this.template(filters.backend + '/' + file, 'server/api/' + this.fileName + '/' + this.fileName + '.' + file);
         }.bind(this));
 
         utils.rewriteFile({
-            file: 'server/routes.js',
+            file: 'server/routes.ts',
             needle: '// API',
             splicable: [
                 'app.use(\'' + this.url + '\', require(\'./api/' + this.fileName + '\'));'
@@ -84,17 +84,17 @@ var NovaGenerator = yeoman.generators.NamedBase.extend({
         });
 
         if (this.resource) {
-            this.template('service.js', 'client/services/' + this.fileName + '/' + this.fileName + '.resource.js');
+            this.template('service.ts', 'client/services/' + this.fileName + '/' + this.fileName + '.resource.ts');
         }
 
         if (this.sockets) {
-            this.template('mongo/socket.js', 'server/api/' + this.fileName + '/' + this.fileName + '.socket.js');
+            this.template('mongo/socket.ts', 'server/api/' + this.fileName + '/' + this.fileName + '.socket.ts');
 
             utils.rewriteFile({
-                file: 'server/config/sockets.js',
+                file: 'server/config/sockets.ts',
                 needle: '// sockets insert',
                 splicable: [
-                    'require(\'../api/' + this.fileName + '/' + this.fileName + '.socket.js\').register(socket);'
+                    'require(\'../api/' + this.fileName + '/' + this.fileName + '.socket.ts\').register(socket);'
                 ]
             });
         }
