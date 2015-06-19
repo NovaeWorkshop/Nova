@@ -12,10 +12,10 @@ module <%= capName %>App.Services.Auth {
 
     class AuthService implements IAuthService {
 
-        private user;
-        private ready;
+        private _user;
+        private _ready: ng.IDeferred<boolean>;
 
-        static $inject = ['$localStorage', '$q', '$http', '$window', '$state', 'API_SERVER'];
+        static $inject = ['$localStorage', '$q', '$http', '$window', '$state', 'CONFIG'];
 
         constructor(
             private $localStorage,
@@ -23,24 +23,28 @@ module <%= capName %>App.Services.Auth {
             private $http: ng.IHttpService,
             private $window: ng.IWindowService,
             private $state: ng.ui.IStateService,
-            private API_SERVER: string) {
+            private CONFIG: IAppConfig) {
 
-            this.ready = $q.defer();
+            this._ready = $q.defer();
 
             if ($localStorage.token) {
-                $http.get(API_SERVER + '/api/users/me')
-                    .then(res => this.user = res.data)
-                    .finally(() => this.ready.resolve());
+                $http.get(CONFIG.API_SERVER + '/api/users/me')
+                    .then(res => this._user = res.data)
+                    .finally(() => this._ready.resolve(true));
             } else
-                this.ready.resolve();
+                this._ready.resolve(true);
+        }
+
+        ready() {
+            return this._ready.promise;
         }
 
         signup(user) {
             var deferred = this.$q.defer();
 
-            this.$http.post(this.API_SERVER + '/api/users', user)
+            this.$http.post(this.CONFIG.API_SERVER + '/api/users', user)
                 .then((res: IAuthCallback) => {
-                    this.user = res.data.user;
+                    this._user = res.data.user;
                     this.$localStorage.token = res.data.token;
                     deferred.resolve();
                 })
@@ -51,9 +55,9 @@ module <%= capName %>App.Services.Auth {
         login(user) {
             var deferred = this.$q.defer();
 
-            this.$http.post(this.API_SERVER + '/auth/local', user)
+            this.$http.post(this.CONFIG.API_SERVER + '/auth/local', user)
                 .then((res: IAuthCallback) => {
-                    this.user = res.data.user;
+                    this._user = res.data.user;
                     this.$localStorage.token = res.data.token;
                     deferred.resolve();
                 })
@@ -64,7 +68,7 @@ module <%= capName %>App.Services.Auth {
         facebookLogin() {
             var deferred = this.$q.defer();
 
-            var url = this.API_SERVER + '/auth/facebook',
+            var url = this.CONFIG.API_SERVER + '/auth/facebook',
                 width = 1000,
                 height = 650,
                 top = (window.outerHeight - height) / 2,
@@ -77,7 +81,7 @@ module <%= capName %>App.Services.Auth {
                 if (message.status === 'success') {
                     popup.close();
 
-                    this.user = message.user;
+                    this._user = message.user;
                     this.$localStorage.token = message.token;
                     this.$state.reload();
 
@@ -86,7 +90,7 @@ module <%= capName %>App.Services.Auth {
                 } else if (message.status === 'fail') {
                     popup.close();
 
-                    delete this.user;
+                    delete this._user;
                     delete this.$localStorage.token;
                     this.$state.reload();
 
@@ -98,23 +102,15 @@ module <%= capName %>App.Services.Auth {
 
         logout() {
             delete this.$localStorage.token;
-            delete this.user;
+            delete this._user;
         }
 
         isLogged() {
-            var def = this.$q.defer();
-
-            this.ready.promise.then(() => {
-                if (typeof this.user !== 'undefined')
-                    def.resolve();
-                else
-                    def.reject();
-            });
-            return def.promise;
+            return typeof this._user !== 'undefined';
         }
 
         getUser() {
-            return this.user;
+            return this._user;
         }
     }
 

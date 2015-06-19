@@ -12,16 +12,20 @@ module <%= capName %>App {
         'btford.socket-io'<% } %>
     ])
 
-        .constant('API_SERVER', 'http://localhost:9000')
+        .constant('CONFIG', {
+            'API_SERVER': 'http://localhost:9000',
+            'IS_DESKTOP_APP': (typeof isDesktopApp !== 'undefined' ? isDesktopApp : false)
+        })
 
         .config(function(
             $stateProvider: ng.ui.IStateProvider,
             $urlRouterProvider: ng.ui.IUrlRouterProvider,
             $locationProvider: ng.ILocationProvider<% if (filters.auth) { %>,
-            $httpProvider: ng.IHttpProvider<% } %>) {
+            $httpProvider: ng.IHttpProvider <% } %>,
+            CONFIG: IAppConfig) {
 
             $urlRouterProvider.otherwise('/login');
-            if (!isDesktopApp)
+            if (!CONFIG.IS_DESKTOP_APP)
                 $locationProvider.html5Mode(true);<% if (filters.auth) { %>
             $httpProvider.interceptors.push('authInterceptor');<% } %>
         })<% if (filters.auth) { %>

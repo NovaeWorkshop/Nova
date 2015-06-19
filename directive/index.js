@@ -9,6 +9,8 @@ var utils = require('../util');
 var NovaGenerator = yeoman.generators.NamedBase.extend({
 
     initializing: function () {
+        this.appName = _.camelize(this.appname);
+        this.capName = _.capitalize(this.appName);
         this.camelName = _.camelize(this.name);
         this.dashName = _.dasherize(this.name);
     },

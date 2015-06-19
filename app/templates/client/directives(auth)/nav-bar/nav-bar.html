@@ -3,17 +3,17 @@
     <li>
       <a ui-sref="home">home</a>
     </li>
-    <li ng-if="!Auth.getUser()">
+    <li ng-if="!Auth.isLogged()">
       <a ui-sref="signup">signup</a>
     </li>
-    <li ng-if="!Auth.getUser()">
+    <li ng-if="!Auth.isLogged()">
       <a ui-sref="login">login</a>
     </li>
-    <li ng-if="Auth.getUser()">
+    <li ng-if="Auth.isLogged()">
       <a href="" ng-click="Auth.logout()">logout</a>
     </li>
     <li>
-      <pre>logged in: {{ !!Auth.getUser() }}</pre>
+      <pre>logged in: {{ Auth.isLogged() }}</pre>
     </li>
   </ul>
 </nav>

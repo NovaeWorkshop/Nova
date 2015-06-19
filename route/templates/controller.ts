@@ -1,13 +1,20 @@
 /// <reference path="../../app.d.ts" />
 'use strict';
 
-angular.module('<%= appName %>')
-    .controller('<%= controllerName %>', function() {
+module <%= capName %>App.Controllers.<%= controllerName %> {
 
-        var vm = this;
+    class <%= controllerName %> {
 
-        angular.extend(vm, {
-            name: '<%= controllerName %>'
-        });
+        public name = '<%= controllerName %>';
 
-    });
+        static $inject = ['$scope'];
+
+        constructor(
+            private $scope: ng.IScope) {
+
+        }
+
+    }
+
+    angular.module('<%= appname %>').controller('<%= controllerName %>', <%= controllerName %>);
+}
