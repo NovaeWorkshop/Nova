@@ -1,3 +1,4 @@
+/// <reference path="../server.d.ts" />
 'use strict';
 
 angular.module('<%= appname %>')
