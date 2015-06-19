@@ -12,28 +12,37 @@ var NovaGenerator = yeoman.generators.NamedBase.extend({
         this.appName = _.camelize(this.appname);
         this.capName = _.capitalize(this.appName);
         this.controllerName = _.capitalize(_.camelize(this.name)) + 'Controller';
+        this.controllerAlias = _.capitalize(_.camelize(this.name)) + 'Ctrl';
         this.dashName = _.dasherize(this.name);
+        this.routeName = this.dashName.split('.').reverse()[0];
     },
 
     prompting: function () {
         var self = this;
         var done = self.async();
-        self.prompt([{
-            type: 'input',
-            name: 'state',
-            message: 'Define state name',
-            default: self.dashName
-        }, {
+        self.prompt([
+            {
+                type: 'confirm',
+                name: 'abstract',
+                message: 'Abstract state?',
+                default: false
+            }, {
+                type: 'input',
+                name: 'state',
+                message: 'Define state name',
+                default: self.dashName
+            }, {
                 type: 'input',
                 name: 'route',
                 message: 'Choose an url route',
-                default: '/' + self.dashName
+                default: '/' + self.routeName
             }, {
                 type: 'confirm',
                 name: 'import',
                 message: 'Do you want to create and import the ' + chalk.blue(this.dashName + '.scss') + ' style in your app.scss?',
                 default: false
             }], function (props) {
+                self.abstract = props.abstract;
                 self.state = props.state;
                 self.route = props.route;
                 self.import = props.import;

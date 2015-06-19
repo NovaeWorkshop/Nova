@@ -5,13 +5,14 @@ angular.module('<%= appname %>')
     .config(function($stateProvider) {
 
         $stateProvider
-            .state('<%= state %>', {
+        .state('<%= state %>', {<% if (abstract) { %>
+                abstract: true, <% } %>
                 url: '<%= route %>',
                 views: {
                     'app': {
                         templateUrl: 'views/<%= dashName %>/<%= dashName %>.html',
                         controller: '<%= controllerName %>',
-                        controllerAs: 'vm'
+                        controllerAs: '<%= controllerAlias %>'
                     }
                 }
             });
