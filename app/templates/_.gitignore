@@ -6,6 +6,7 @@
 /server/auth/**/*.js
 /server/config/*.js
 /server/*.js
+!*.spec.js
 /.idea/
 /dist/
 /.sass-cache/<% if (filters.hasDocs) { %>
