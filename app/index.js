@@ -207,7 +207,8 @@ var NovaGenerator = yeoman.generators.Base.extend({
               }
               done();
             });
-        } else {
+        }
+        else {
           done();
         }
 
@@ -233,13 +234,13 @@ var NovaGenerator = yeoman.generators.Base.extend({
   end: function () {
     /* istanbul ignore if */
     if (!this.options.skipInstall)
-      utils.bangLog('Installing dependencies...', 'yellow');
+      utils.novaLog('Installing dependencies...', 'yellow');
 
     this.installDependencies({
       skipInstall: this.options.skipInstall,
       skipMessage: true,
       callback: function () {
-        utils.bangLog('Everything is ready !\n', 'green');
+        utils.novaLog('Everything is ready !\n', 'green');
       }
     });
   }

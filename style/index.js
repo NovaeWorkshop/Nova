@@ -28,22 +28,21 @@ var NovaGenerator = yeoman.generators.NamedBase.extend({
     function importCallback(err) {
       /* istanbul ignore if */
       if (err) {
-        utils.bangLog('There was an error importing the style.', 'red');
-      } else {
-        utils.bangLog('Your style was successfully injected.', 'green');
+        utils.novaLog('There was an error importing the style.', 'red');
+      }
+      else {
+        utils.novaLog('Your style was successfully injected.', 'green');
       }
     }
 
     this.template('style.scss', 'client/styles/' + this.name + '.scss');
 
     if (this.import) {
-
       utils.appendNeedleOrOnTop({
         needle: '// imports',
         file: 'client/styles/app.scss',
         append: '@import "' + this.name + '";'
       }, importCallback);
-
     }
 
   }

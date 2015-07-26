@@ -45,11 +45,13 @@ var NovaGenerator = yeoman.generators.NamedBase.extend({
 
     var filters = this.config.get('filters');
 
-    if (filters && filters.karma)
+    if (filters && filters.karma) {
       this.template('directive.spec.js', basePath + '.spec.js');
+    }
 
-    if (this.needTemplate)
+    if (this.needTemplate) {
       this.template('directive.html', basePath + '.html');
+    }
 
     if (this.import) {
       this.template('style.scss', basePath + '.scss');
@@ -59,12 +61,14 @@ var NovaGenerator = yeoman.generators.NamedBase.extend({
         file: 'client/styles/app.scss',
         append: '@import "../directives/' + this.dashName + '/' + this.dashName + '";'
       }, function importCallback(err) {
-          /* istanbul ignore if */
-          if (err)
-            utils.bangLog('There was an error importing the style.', 'red');
-          else
-            utils.bangLog('Your style was successfully injected.', 'green');
-        });
+        /* istanbul ignore if */
+        if (err) {
+          utils.novaLog('There was an error importing the style.', 'red');
+        }
+        else {
+          utils.novaLog('Your style was successfully injected.', 'green');
+        }
+      });
     }
 
   }

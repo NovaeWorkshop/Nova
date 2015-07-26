@@ -8,6 +8,7 @@ var chalk = require('chalk');
 var _ = require('lodash');
 var helpers = require('yeoman-generator').test;
 
+
 function escapeRegExp(str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
 }
@@ -31,6 +32,7 @@ function filterFile(template) {
 }
 
 function templateIsUsable(self, filteredFile) {
+
   var filters = self.config.get('filters');
   var enabledFilters = [];
   for (var key in filters) {
@@ -47,9 +49,11 @@ function templateIsUsable(self, filteredFile) {
 }
 
 var out = {
-  bangLog: function (msg, color) {
-    console.log('[' + chalk.blue('bangular') + ']: ' + chalk[color](msg));
+
+  novaLog: function (msg, color) {
+    console.log('[' + chalk.blue('nova') + ']: ' + chalk[color](msg));
   },
+
   scaffold: function (prompts, cb, opts) {
     if (!prompts) { return cb('No option given.'); }
     helpers.run(path.join(__dirname, './app'))
@@ -58,10 +62,12 @@ var out = {
       .withPrompts(prompts)
       .on('end', cb);
   },
+
   fileExists: function (path) {
     if (fs.existsSync(path)) { return true; }
     return false;
   },
+
   appendTo: function (yeoman, opts) {
     var data = fs.readFileSync(opts.src).toString();
 
@@ -69,21 +75,31 @@ var out = {
       fs.unlinkSync(opts.src);
     });
   },
+
   appendOnTop: function (opts, cb) {
     fs.readFile(opts.dest, function (err, data) {
-      if (err) { return cb(err, null); }
+      if (err) {
+        return cb(err, null);
+      }
       fs.writeFile(opts.dest, opts.append + '\n', function (err) {
-        if (err) { return cb(err, null); }
+        if (err) {
+          return cb(err, null);
+        }
         fs.appendFile(opts.dest, data, function (err) {
-          if (err) { return cb(err, null); }
+          if (err) {
+            return cb(err, null);
+          }
           cb(null, true);
         });
       });
     });
   },
+
   appendNeedleOrOnTop: function (args, cb) {
     fs.readFile(args.file, function (err, data) {
-      if (err || !data) { return cb(true); }
+      if (err || !data) {
+        return cb(true);
+      }
       if (data.toString().indexOf(args.needle) !== -1) {
         out.rewriteFile({
           file: args.file,
@@ -92,7 +108,8 @@ var out = {
             args.append
           ]
         }, cb);
-      } else {
+      }
+      else {
         out.appendOnTop({
           dest: args.file,
           append: args.append
@@ -100,8 +117,9 @@ var out = {
       }
     });
   },
+
   rewrite: function (args) {
-    // check if splicable is already in the body text
+    // Check if splicable is already in the body text
     var re = new RegExp(args.splicable.map(function (line) {
       return '\s*' + escapeRegExp(line);
     }).join('\n'));
@@ -142,6 +160,7 @@ var out = {
 
     return lines.join('\n');
   },
+
   rewriteFile: function (args, cb) {
     args.path = args.path || process.cwd();
     var fullPath = path.join(args.path, args.file);
@@ -153,6 +172,7 @@ var out = {
       if (cb) { cb(err); }
     });
   },
+
   processDirectory: function (self, source, destination) {
     var root = isPathAbsolute(source) ? source : path.join(self.sourceRoot(), source);
     var files = glob.sync('**', { dot: true, nodir: true, cwd: root });
@@ -180,7 +200,8 @@ var out = {
       if (templateIsUsable(self, filteredFile)) {
         if (copy) {
           self.copy(src, dest);
-        } else {
+        }
+        else {
           self.template(src, dest);
         }
       }

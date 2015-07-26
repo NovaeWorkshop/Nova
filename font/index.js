@@ -68,9 +68,9 @@ var NovaGenerator = yeoman.generators.NamedBase.extend({
       }, function (err) {
           /* istanbul ignore if */
           if (err) {
-            utils.bangLog('There was an error importing the font file.', 'red');
+            utils.novaLog('There was an error importing the font file.', 'red');
           } else {
-            utils.bangLog('Your font was successfully injected.', 'green');
+            utils.novaLog('Your font was successfully injected.', 'green');
           }
         });
 
@@ -93,9 +93,9 @@ var NovaGenerator = yeoman.generators.NamedBase.extend({
       }, function (err) {
           /* istanbul ignore if */
           if (err) {
-            utils.bangLog('There was an error copying the template to your font file.', 'red');
+            utils.novaLog('There was an error copying the template to your font file.', 'red');
           } else {
-            utils.bangLog('Your font was successfully injected.', 'green');
+            utils.novaLog('Your font was successfully injected.', 'green');
           }
         });
 

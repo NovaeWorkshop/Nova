@@ -80,9 +80,9 @@ var NovaGenerator = yeoman.generators.NamedBase.extend({
         }, function importCallback(err) {
             /* istanbul ignore if */
             if (err) {
-              utils.bangLog('There was an error importing the style.', 'red');
+              utils.novaLog('There was an error importing the style.', 'red');
             } else {
-              utils.bangLog('Your style was successfully injected.', 'green');
+              utils.novaLog('Your style was successfully injected.', 'green');
             }
           });
 
