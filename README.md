@@ -28,7 +28,7 @@ Optional:
 
 # Install
 
-    npm install -g nova-generator
+    npm install -g generator-nova
     yo nova
 
 ### Table of contents
