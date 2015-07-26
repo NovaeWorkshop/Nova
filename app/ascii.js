@@ -4,12 +4,12 @@ var chalk = require('chalk');
 var version = require('../package.json').version;
 
 var title = chalk.green(
-  '\n  ooo. .oo.    .ooooo.  oooo    ooo  .oooo.   ' +
-  '\n  `888P"Y88b  d88\' `88b  `88.  .8\'  `P  )88b  ' +
-  '\n   888 888  888   888   `88..8\'  .oP"888  ' +
-  '\n   888 888  888   888    `888\'  d8(  888  ' +
-  '\n  o888o o888o `Y8bod8P\'   `8\'   `Y888""8o ') +
-  '\n  ' + pad(version, 8) + '          ' + chalk.bgBlack('Fast Architecture') +
+  '\n  oo: .oo.   .:oooo;, oo.    oo: .oooo.   ' +
+  '\n  888P"Y88b d88\'  `88b`88.  /8" `" `88b  ' +
+  '\n  888   888 888    888 `88./8\'  .oP"888  ' +
+  '\n  888   888 888.  ,889  `888\'  d8!  888  ' +
+  '\n  888   888  `Y8bod8"    `8\'   `Y888"`P  ') +
+  '\n  ' + pad(version, 8) + '            ' + 'Fast Architecture' +
   '\n\n';
 
 function pad(str, nb) {
