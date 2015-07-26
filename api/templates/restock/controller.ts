@@ -4,7 +4,7 @@
 var request = require('request');
 
 function handleError(res, err) {
-    return res.status(500).send(err);
+	return res.status(500).send(err);
 }
 
 var apiUrl = 'http://www.restock.io/api/';
@@ -24,10 +24,10 @@ var apiUrl = 'http://www.restock.io/api/';
  *
  */<% } %>
 exports.index = function(req, res) {
-    request(apiUrl + '10{name:s}', function(err, resp, body) {
-        if (err) { return handleError(res, err); }
-        res.status(resp.statusCode).send(body);
-    });
+	request(apiUrl + '10{name:s}', function(err, resp, body) {
+		if (err) { return handleError(res, err); }
+		res.status(resp.statusCode).send(body);
+	});
 };
 
 <% if (!filters.apidoc) { %>
@@ -45,10 +45,10 @@ exports.index = function(req, res) {
  *
  */<% } %>
 exports.show = function(req, res) {
-    request(apiUrl + '{name:s}', function(err, resp, body) {
-        if (err) { return handleError(res, err); }
-        res.status(resp.statusCode).send(body);
-    });
+	request(apiUrl + '{name:s}', function(err, resp, body) {
+		if (err) { return handleError(res, err); }
+		res.status(resp.statusCode).send(body);
+	});
 };
 
 <% if (!filters.apidoc) { %>
@@ -66,7 +66,7 @@ exports.show = function(req, res) {
  *
  */<% } %>
 exports.create = function(req, res) {
-    res.status(201).json({});
+	res.status(201).json({});
 };
 
 <% if (!filters.apidoc) { %>
@@ -84,7 +84,7 @@ exports.create = function(req, res) {
  *
  */<% } %>
 exports.update = function(req, res) {
-    res.status(200).json({});
+	res.status(200).json({});
 };
 
 <% if (!filters.apidoc) { %>
@@ -102,5 +102,5 @@ exports.update = function(req, res) {
  *
  */<% } %>
 exports.destroy = function(req, res) {
-    return res.status(204);
+	return res.status(204);
 };

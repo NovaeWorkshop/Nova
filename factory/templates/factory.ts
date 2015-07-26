@@ -2,9 +2,9 @@
 'use strict';
 
 angular.module('<%= appname %>')
-    .factory('<%= camelName %>', function () {
+	.factory('<%= camelName %>', function () {
 
-        return {
-        };
+		return {
+		};
 
-    });
+	});

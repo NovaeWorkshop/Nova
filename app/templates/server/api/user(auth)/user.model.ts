@@ -1,20 +1,20 @@
 /// <reference path="../../server.d.ts" />
 'use strict';
 
-var crypto   = require('crypto'),
-    mongoose = require('mongoose'),
-    Schema   = mongoose.Schema;
+var crypto = require('crypto'),
+	mongoose = require('mongoose'),
+	Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
-    email: String,
-    passwordHash: String,
-    salt: String,
-    name: String,
-    username: String,
-    user_image: String,
-    facebook_id: String,
-    facebook: { },
-    createdAt: { type: Date, 'default': Date.now }
+	email: String,
+	passwordHash: String,
+	salt: String,
+	name: String,
+	username: String,
+	user_image: String,
+	facebook_id: String,
+	facebook: { },
+	createdAt: { type: Date, 'default': Date.now }
 });
 
 /**
@@ -22,33 +22,33 @@ var UserSchema = new Schema({
  */
 
 UserSchema
-    .virtual('password')
-    .set(function (password) {
-        this._password = password;
-        this.salt = this.makeSalt();
-        this.passwordHash = this.encryptPassword(password);
-    })
-    .get(function () {
-        return this._password;
-    });
+	.virtual('password')
+	.set(function (password) {
+		this._password = password;
+		this.salt = this.makeSalt();
+		this.passwordHash = this.encryptPassword(password);
+	})
+	.get(function () {
+		return this._password;
+	});
 
 /**
  * Validations
  */
 
 UserSchema
-    .path('email')
-    .validate(function (value, respond) {
-        var self = this;
-        this.constructor.findOne({ email: value }, function (err, user) {
-            if (err) { throw err; }
-            if (user) {
-                if (self.id === user.id) { return respond(true); }
-                return respond(false);
-            }
-            respond(true);
-        });
-    }, 'email already used');
+	.path('email')
+	.validate(function (value, respond) {
+		var self = this;
+		this.constructor.findOne({ email: value }, function (err, user) {
+			if (err) { throw err; }
+			if (user) {
+				if (self.id === user.id) { return respond(true); }
+				return respond(false);
+			}
+			respond(true);
+		});
+	}, 'email already used');
 
 /**
  * Methods
@@ -56,36 +56,36 @@ UserSchema
 
 UserSchema.methods = {
 
-    /**
-     * Authenticate
-     *
-     * @param {String} password
-     * @return {Boolean}
-     */
-    authenticate: function (password) {
-        return this.encryptPassword(password) === this.passwordHash;
-    },
+	/**
+	 * Authenticate
+	 *
+	 * @param {String} password
+	 * @return {Boolean}
+	 */
+	authenticate: function (password) {
+		return this.encryptPassword(password) === this.passwordHash;
+	},
 
-    /**
-     * Make salt
-     *
-     * @return {String}
-     */
-    makeSalt: function () {
-        return crypto.randomBytes(16).toString('base64');
-    },
+	/**
+	 * Make salt
+	 *
+	 * @return {String}
+	 */
+	makeSalt: function () {
+		return crypto.randomBytes(16).toString('base64');
+	},
 
-    /**
-     * Encrypt password
-     *
-     * @param {String} password
-     * @return {String}
-     */
-    encryptPassword: function (password) {
-        if (!password || !this.salt) { return ''; }
-        var salt = new Buffer(this.salt, 'base64');
-        return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
-    }
+	/**
+	 * Encrypt password
+	 *
+	 * @param {String} password
+	 * @return {String}
+	 */
+	encryptPassword: function (password) {
+		if (!password || !this.salt) { return ''; }
+		var salt = new Buffer(this.salt, 'base64');
+		return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
+	}
 
 };
 

@@ -17,26 +17,26 @@ var config = require('./environment');
 
 module.exports = function(app) {
 
-    var env = config.env;
+	var env = config.env;
 
-    app.set('view engine', 'html');
-    app.use(bodyParser.urlencoded({ extended: false }));
-    app.use(bodyParser.json());
-    app.use(compression());
-    app.use(morgan('dev')); <% if (filters.auth) { %>
-    app.use(passport.initialize()); <% } %>
-    app.use(express.static(path.join(config.root, 'client')));
-    app.set('appPath', 'client'); <% if (filters.auth) { %>
+	app.set('view engine', 'html');
+	app.use(bodyParser.urlencoded({ extended: false }));
+	app.use(bodyParser.json());
+	app.use(compression());
+	app.use(morgan('dev')); <% if (filters.auth) { %>
+	app.use(passport.initialize()); <% } %>
+	app.use(express.static(path.join(config.root, 'client')));
+	app.set('appPath', 'client'); <% if (filters.auth) { %>
 
-    app.use(session({
-        secret: config.secrets.session,
-        resave: true,
-        saveUninitialized: true,
-        store: new mongoStore({ mongooseConnection: mongoose.connection })
-    })); <% } %>
+	app.use(session({
+		secret: config.secrets.session,
+		resave: true,
+		saveUninitialized: true,
+		store: new mongoStore({ mongooseConnection: mongoose.connection })
+	})); <% } %>
 
-    if (env === 'development' || env === 'test') {
-        app.use(require('errorhandler')());
-    }
+	if (env === 'development' || env === 'test') {
+		app.use(require('errorhandler')());
+	}
 
 };

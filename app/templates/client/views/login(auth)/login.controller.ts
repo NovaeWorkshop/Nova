@@ -3,37 +3,37 @@
 
 module <%= capName %>App.Views.Login {
 
-    class LoginController {
+	class LoginController {
 
-        public name = 'LoginCtrl';
-        public user;
-        public error;
+		public name = 'LoginCtrl';
+		public user;
+		public error;
 
-        static $inject = ['$location', '$state', 'Auth'];
+		static $inject = ['$location', '$state', 'Auth'];
 
-        constructor(
-            private $location: ng.ILocationService,
-            private $state: ng.ui.IStateService,
-            private Auth: IAuthService) {
+		constructor(
+			private $location: ng.ILocationService,
+			private $state: ng.ui.IStateService,
+			private Auth: IAuthService) {
 
-            this.user = {
-                email: 'test@test.com',
-                password: 'test'
-            };
-        }
+			this.user = {
+				email: 'test@test.com',
+				password: 'test'
+			};
+		}
 
-        login() {
-            this.Auth.login(this.user)
-                .then(() => this.$location.path('/'))
-                .catch(err => this.error = err);
-        }
+		login() {
+			this.Auth.login(this.user)
+				.then(() => this.$location.path('/'))
+				.catch(err => this.error = err);
+		}
 
-        facebookLogin() {
-            this.Auth.facebookLogin()
-                .then(() => this.$state.go('home'),
-                    () => this.$state.go('login'));
-        }
-    }
+		facebookLogin() {
+			this.Auth.facebookLogin()
+				.then(() => this.$state.go('home'),
+					() => this.$state.go('login'));
+		}
+	}
 
-    angular.module('<%= appname %>').controller('LoginCtrl', LoginController);
+	angular.module('<%= appname %>').controller('LoginCtrl', LoginController);
 }

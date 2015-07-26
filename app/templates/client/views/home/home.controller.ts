@@ -2,12 +2,12 @@
 'use strict';
 
 angular.module('<%= appname %>')
-    .controller('HomeCtrl', function() {
+	.controller('HomeCtrl', function() {
 
-        var vm = this;
+		var vm = this;
 
-        angular.extend(vm, {
-            name: 'HomeCtrl'
-        });
+		angular.extend(vm, {
+			name: 'HomeCtrl'
+		});
 
-    });
+	});

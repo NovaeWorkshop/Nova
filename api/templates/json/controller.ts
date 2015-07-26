@@ -4,7 +4,7 @@
 var fs = require('fs');
 
 function handleError(res, err) {
-    return res.status(500).send(err);
+	return res.status(500).send(err);
 }
 
 <% if (!filters.apidoc) { %>
@@ -22,10 +22,10 @@ function handleError(res, err) {
  *
  */<% } %>
 exports.index = function(req, res) {
-    fs.readFile('server/api/<%= fileName %>/<%= fileName %>.data.json', 'utf-8', function (err, <%= instancesName %>) {
-        if (err) { return handleError(res, err); }
-        res.status(200).json(JSON.parse(<%= instancesName %>));
-    });
+	fs.readFile('server/api/<%= fileName %>/<%= fileName %>.data.json', 'utf-8', function (err, <%= instancesName %>) {
+		if (err) { return handleError(res, err); }
+		res.status(200).json(JSON.parse(<%= instancesName %>));
+	});
 };
 
 <% if (!filters.apidoc) { %>
@@ -43,7 +43,7 @@ exports.index = function(req, res) {
  *
  */<% } %>
 exports.show = function(req, res) {
-    res.status(200).json({});
+	res.status(200).json({});
 };
 
 <% if (!filters.apidoc) { %>
@@ -61,7 +61,7 @@ exports.show = function(req, res) {
  *
  */<% } %>
 exports.create = function(req, res) {
-    res.status(201).json({});
+	res.status(201).json({});
 };
 
 <% if (!filters.apidoc) { %>
@@ -79,7 +79,7 @@ exports.create = function(req, res) {
  *
  */<% } %>
 exports.update = function(req, res) {
-    res.status(200).json({});
+	res.status(200).json({});
 };
 
 <% if (!filters.apidoc) { %>
@@ -97,5 +97,5 @@ exports.update = function(req, res) {
  *
  */<% } %>
 exports.destroy = function(req, res) {
-    return res.status(204);
+	return res.status(204);
 };

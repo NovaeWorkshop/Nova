@@ -3,18 +3,18 @@
 
 module <%= capName %>App.Controllers.<%= controllerName %> {
 
-    class <%= controllerName %> {
+	class <%= controllerName %> {
 
-        public name = '<%= controllerName %>';
+		public name = '<%= controllerName %>';
 
-        static $inject = ['$scope'];
+		static $inject = ['$scope'];
 
-        constructor(
-            private $scope: ng.IScope) {
+		constructor(
+			private $scope: ng.IScope) {
 
-        }
+		}
 
-    }
+	}
 
-    angular.module('<%= appname %>').controller('<%= controllerName %>', <%= controllerName %>);
+	angular.module('<%= appname %>').controller('<%= controllerName %>', <%= controllerName %>);
 }

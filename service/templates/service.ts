@@ -3,14 +3,14 @@
 
 module <%= capName %>App.Services.<%= camelName %> {
 
-    class <%= camelName %>Service {
+	class <%= camelName %>Service {
 
-        static $inject = [];
+		static $inject = [];
 
-        constructor() {
+		constructor() {
 
-        }
-    }
+		}
+	}
 
-    angular.module('<%= appname %>').service('<%= camelName %>', <%= camelName %>Service);
+	angular.module('<%= appname %>').service('<%= camelName %>', <%= camelName %>Service);
 }

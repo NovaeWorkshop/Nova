@@ -5,7 +5,7 @@ var _ = require('lodash');
 var <%= objectName %> = require('./<%= fileName %>.model');
 
 function handleError (res, err) {
-    return res.status(500).send(err);
+	return res.status(500).send(err);
 }
 <% if (!filters.apidoc) { %>
 /**
@@ -23,10 +23,10 @@ function handleError (res, err) {
  *
  */<% } %>
 exports.index = function (req, res) {
-    <%= objectName %>.find(function (err, <%= instancesName %>) {
-        if (err) { return handleError(res, err); }
-        return res.status(200).json(<%= instancesName %>);
-    });
+	<%= objectName %>.find(function (err, <%= instancesName %>) {
+		if (err) { return handleError(res, err); }
+		return res.status(200).json(<%= instancesName %>);
+	});
 };
 <% if (!filters.apidoc) { %>
 /**
@@ -46,11 +46,11 @@ exports.index = function (req, res) {
  *
  */<% } %>
 exports.show = function (req, res) {
-    <%= objectName %>.findById(req.params.id, function (err, <%= instanceName %>) {
-        if (err) { return handleError(res, err); }
-        if (!<%= instanceName %>) { return res.status(404).end(); }
-        return res.status(200).json(<%= instanceName %>);
-    });
+	<%= objectName %>.findById(req.params.id, function (err, <%= instanceName %>) {
+		if (err) { return handleError(res, err); }
+		if (!<%= instanceName %>) { return res.status(404).end(); }
+		return res.status(200).json(<%= instanceName %>);
+	});
 };
 <% if (!filters.apidoc) { %>
 /**
@@ -68,10 +68,10 @@ exports.show = function (req, res) {
  *
  */<% } %>
 exports.create = function (req, res) {
-    <%= objectName %>.create(req.body, function (err, <%= instanceName %>) {
-        if (err) { return handleError(res, err); }
-        return res.status(201).json(<%= instanceName %>);
-    });
+	<%= objectName %>.create(req.body, function (err, <%= instanceName %>) {
+		if (err) { return handleError(res, err); }
+		return res.status(201).json(<%= instanceName %>);
+	});
 };
 <% if (!filters.apidoc) { %>
 /**
@@ -91,16 +91,16 @@ exports.create = function (req, res) {
  *
  */<% } %>
 exports.update = function (req, res) {
-    if (req.body._id) { delete req.body._id; }
-    <%= objectName %>.findById(req.params.id, function (err, <%= instanceName %>) {
-        if (err) { return handleError(res, err); }
-        if (!<%= instanceName %>) { return res.status(404).end(); }
-        var updated = _.merge(<%= instanceName %>, req.body);
-        updated.save(function (err) {
-            if (err) { return handleError(res, err); }
-            return res.status(200).json(<%= instanceName %>);
-        });
-    });
+	if (req.body._id) { delete req.body._id; }
+	<%= objectName %>.findById(req.params.id, function (err, <%= instanceName %>) {
+		if (err) { return handleError(res, err); }
+		if (!<%= instanceName %>) { return res.status(404).end(); }
+		var updated = _.merge(<%= instanceName %>, req.body);
+		updated.save(function (err) {
+			if (err) { return handleError(res, err); }
+			return res.status(200).json(<%= instanceName %>);
+		});
+	});
 };
 <% if (!filters.apidoc) { %>
 /**
@@ -120,12 +120,12 @@ exports.update = function (req, res) {
  *
  */<% } %>
 exports.destroy = function (req, res) {
-    <%= objectName %>.findById(req.params.id, function (err, <%= instanceName %>) {
-        if (err) { return handleError(res, err); }
-        if (!<%= instanceName %>) { return res.status(404).end(); }
-        <%= instanceName %>.remove(function (err) {
-            if (err) { return handleError(res, err); }
-            return res.status(204).end();
-        });
-    });
+	<%= objectName %>.findById(req.params.id, function (err, <%= instanceName %>) {
+		if (err) { return handleError(res, err); }
+		if (!<%= instanceName %>) { return res.status(404).end(); }
+		<%= instanceName %>.remove(function (err) {
+			if (err) { return handleError(res, err); }
+			return res.status(204).end();
+		});
+	});
 };
