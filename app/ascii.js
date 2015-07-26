@@ -4,11 +4,11 @@ var chalk = require('chalk');
 var version = require('../package.json').version;
 
 var title = chalk.green(
-  '\n  oo: .oo.   .:oooo;, oo.    oo: .oooo.   ' +
-  '\n  888P"Y88b d88\'  `88b`88.  /8" `" `88b  ' +
-  '\n  888   888 888    888 `88./8\'  .oP"888  ' +
-  '\n  888   888 888.  ,889  `888\'  d8!  888  ' +
-  '\n  888   888  `Y8bod8"    `8\'   `Y888"`P  ') +
+  '\n  nov nov.   .novan;, no.    an: .nova.   ' +
+  '\n  OVAN"VANo aNO\'  `ANo`AN.  nO" `" `NOv  ' +
+  '\n  VAN   NOV NOV    ANO `NO.aN\'  .vA"OVA  ' +
+  '\n  ANO   OVA OVA.  ,NOV  `VAN\'  oV!  VAN  ' +
+  '\n  NOV   VAN  `NOvaNO"    `n\'   `aNOV"`O  ') +
   '\n  ' + pad(version, 8) + '            ' + 'Fast Architecture' +
   '\n\n';
 
