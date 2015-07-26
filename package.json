@@ -3,11 +3,11 @@
   "version": "0.0.2",
   "description": "Generate and serve your project in a blink of an eye",
   "license": "BSD",
-  "homepage": "https://github.com/NovaeWorkshop/nova",
-  "bugs": "https://github.com/NovaeWorkshop/nova/issues",
+  "homepage": "https://github.com/NovaeWorkshop/Nova",
+  "bugs": "https://github.com/NovaeWorkshop/Nova/issues",
   "repository": {
     "type": "git",
-    "url": "git://github.com/NovaeWorkshop/nova.git"
+    "url": "git://github.com/NovaeWorkshop/Nova.git"
   },
   "contributors": [
     {
@@ -31,16 +31,16 @@
     "fullstack",
     "gulp",
     "yeoman-generator",
-    "bangular-generator",
-    "bangular",
+    "nova-generator",
+    "nova",
+    "typescript",
     "angular",
     "server",
     "sockets",
     "passport",
     "lightweight",
-    "blazingfast",
     "express",
-    "zavattas"
+    "novae"
   ],
   "dependencies": {
     "async": "^0.9.0",
