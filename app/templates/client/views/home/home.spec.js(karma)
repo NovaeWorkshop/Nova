@@ -2,20 +2,20 @@
 
 describe('Controller: HomeCtrl', function() {
 
-    beforeEach(module('<%= appname %>'));
+  beforeEach(module('<%= appname %>'));
 
-    var HomeCtrl,
-        scope;
+  var HomeCtrl,
+    scope;
 
-    beforeEach(inject(function($controller, $rootScope) {
-        scope = $rootScope.$new();
-        HomeCtrl = $controller('HomeCtrl', {
-            $scope: scope
-        });
-    }));
-
-    it('should ...', function() {
-        expect(1).toBe(1);
+  beforeEach(inject(function($controller, $rootScope) {
+    scope = $rootScope.$new();
+    HomeCtrl = $controller('HomeCtrl', {
+      $scope: scope
     });
+  }));
+
+  it('should ...', function() {
+    expect(1).toBe(1);
+  });
 
 });

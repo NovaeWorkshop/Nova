@@ -1,76 +1,76 @@
 {
-    "name": "generator-nova",
-    "version": "0.0.2",
-    "description": "Generate and serve your project in a blink of an eye",
-    "license": "BSD",
-    "homepage": "https://github.com/NovaeWorkshop/nova",
-    "bugs": "https://github.com/NovaeWorkshop/nova/issues",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/NovaeWorkshop/nova.git"
+  "name": "generator-nova",
+  "version": "0.0.2",
+  "description": "Generate and serve your project in a blink of an eye",
+  "license": "BSD",
+  "homepage": "https://github.com/NovaeWorkshop/nova",
+  "bugs": "https://github.com/NovaeWorkshop/nova/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/NovaeWorkshop/nova.git"
+  },
+  "contributors": [
+    {
+      "name": "Christophe Feijoo",
+      "url": "https://github.com/kube"
     },
-    "contributors": [
-        {
-            "name": "Christophe Feijoo",
-            "url": "https://github.com/kube"
-        },
-        {
-            "name": "Maxime Bacoux",
-            "url": "https://github.com/Nax"
-        },
-        {
-            "name": "Meriadec Pillet",
-            "url": "https://github.com/meriadec"
-        },
-        {
-            "name": "Balthazar Gronon",
-            "url": "https://github.com/Apercu"
-        }
-    ],
-    "keywords": [
-        "fullstack",
-        "gulp",
-        "yeoman-generator",
-        "bangular-generator",
-        "bangular",
-        "angular",
-        "server",
-        "sockets",
-        "passport",
-        "lightweight",
-        "blazingfast",
-        "express",
-        "zavattas"
-    ],
-    "dependencies": {
-        "async": "^0.9.0",
-        "chalk": "^1.0.0",
-        "glob": "^5.0.5",
-        "gulp-jshint": "^1.9.2",
-        "jshint-stylish": "^1.0.1",
-        "lodash": "^3.7.0",
-        "mkdirp": "^0.5.0",
-        "underscore.string": "^3.0.3",
-        "yeoman-generator": "^0.19.2"
+    {
+      "name": "Maxime Bacoux",
+      "url": "https://github.com/Nax"
     },
-    "devDependencies": {
-        "conventional-changelog": "0.0.17",
-        "coveralls": "^2.11.2",
-        "chai": "*",
-        "gulp": "^3.8.11",
-        "gulp-jscs": "^1.4.0",
-        "gulp-jscs-stylish": "1.1.0",
-        "gulp.spritesmith": "^3.2.0",
-        "mocha": "*"
+    {
+      "name": "Meriadec Pillet",
+      "url": "https://github.com/meriadec"
     },
-    "peerDependencies": {
-        "yo": ">=1.4.0"
-    },
-    "engines": {
-        "node": ">=0.10.0"
-    },
-    "scripts": {
-        "test": "istanbul cover ./node_modules/mocha/bin/_mocha",
-        "cover": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    {
+      "name": "Balthazar Gronon",
+      "url": "https://github.com/Apercu"
     }
+  ],
+  "keywords": [
+    "fullstack",
+    "gulp",
+    "yeoman-generator",
+    "bangular-generator",
+    "bangular",
+    "angular",
+    "server",
+    "sockets",
+    "passport",
+    "lightweight",
+    "blazingfast",
+    "express",
+    "zavattas"
+  ],
+  "dependencies": {
+    "async": "^0.9.0",
+    "chalk": "^1.0.0",
+    "glob": "^5.0.5",
+    "gulp-jshint": "^1.9.2",
+    "jshint-stylish": "^1.0.1",
+    "lodash": "^3.7.0",
+    "mkdirp": "^0.5.0",
+    "underscore.string": "^3.0.3",
+    "yeoman-generator": "^0.19.2"
+  },
+  "devDependencies": {
+    "conventional-changelog": "0.0.17",
+    "coveralls": "^2.11.2",
+    "chai": "*",
+    "gulp": "^3.8.11",
+    "gulp-jscs": "^1.4.0",
+    "gulp-jscs-stylish": "1.1.0",
+    "gulp.spritesmith": "^3.2.0",
+    "mocha": "*"
+  },
+  "peerDependencies": {
+    "yo": ">=1.4.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha",
+    "cover": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+  }
 }

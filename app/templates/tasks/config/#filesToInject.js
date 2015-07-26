@@ -4,5 +4,5 @@
  */
 
 module.exports = [
-    'client/app.js'
+  'client/app.js'
 ];

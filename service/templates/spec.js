@@ -2,16 +2,16 @@
 
 describe('Service: <%= camelName %>', function () {
 
-    beforeEach(module('<%= appname %>'));
+  beforeEach(module('<%= appname %>'));
 
-    var <%= camelName %>;
+  var <%= camelName %>;
 
-    beforeEach(inject(function (_<%= camelName %>_) {
-        <%= camelName %> = _ <%= camelName %>_;
-    }));
+  beforeEach(inject(function (_<%= camelName %>_) {
+    <%= camelName %> = _ <%= camelName %>_;
+  }));
 
-    it('should ...', function () {
-        expect(1).toBe(1);
-    });
+  it('should ...', function () {
+    expect(1).toBe(1);
+  });
 
 });
