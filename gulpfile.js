@@ -29,17 +29,17 @@ gulp.task('logos', function (done) {
         'logos/bower.png'
     ])
         .pipe(spritesmith({
-        imgName: 'logos-sprite.png',
-        cssName: 'sprite.css',
-        algorithm: 'left-right',
-        algorithmOpts: { sort: false },
-        padding: 10
-    }))
+            imgName: 'logos-sprite.png',
+            cssName: 'sprite.css',
+            algorithm: 'left-right',
+            algorithmOpts: { sort: false },
+            padding: 10
+        }))
         .pipe(gulp.dest('logos/'))
         .on('end', function () {
-        fs.unlinkSync('logos/sprite.css');
-        done();
-    });
+            fs.unlinkSync('logos/sprite.css');
+            done();
+        });
 
 });
 
@@ -57,12 +57,12 @@ gulp.task('control', function (done) {
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'))
         .on('finish', function () {
-        gulp.src(paths)
-            .pipe(jscs())
-            .on('error', function () { })
-            .pipe(jscsStylish())
-            .on('end', done);
-    });
+            gulp.src(paths)
+                .pipe(jscs())
+                .on('error', function () { })
+                .pipe(jscsStylish())
+                .on('end', done);
+        });
 
 });
 
@@ -73,8 +73,8 @@ gulp.task('changelog', function (done) {
         from: '0.11.0',
         to: '0.11.1'
     }, function (err, log) {
-            fs.writeFile('CHANGELOG.md', log, done);
-        });
+        fs.writeFile('CHANGELOG.md', log, done);
+    });
 });
 
 // utils
